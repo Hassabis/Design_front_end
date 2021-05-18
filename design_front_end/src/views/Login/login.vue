@@ -55,6 +55,7 @@ export default {
         require("@/../static/img/login_img/Porche.jpg"),
         require("@/../static/img/login_img/Porche_02.jpg"),
         require("@/../static/img/login_img/Porche_03.jpg"),
+        require("@/../static/img/login_img/Porche_04.jpg"),
       ],
       passmessage:'',
       password: '',
