@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 module.exports = {
     configureWebpack: {
         resolve: {
@@ -24,5 +25,15 @@ module.exports = {
     productionSourceMap: false,
     // 开发环境下的服务端配置
     devServer: {
+    },
+    configureWebpack:{
+        plugins:[
+            new webpack.ProvidePlugin({
+                $:'jquery',
+                jQuery:'jquery',
+                'windows.jQuery':'jquery',
+                Popper:["popper.js","default"]
+            })
+        ]
     }
 }

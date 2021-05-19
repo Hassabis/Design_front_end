@@ -1,6 +1,7 @@
 <template>
   <el-container>
     <el-header height="60px">
+      <img id="logo" :src="require('@/../static/img/login_img/user_logo.svg')" alt="" style="width: 39px;height: 39px" @click="Go_Login">
       <img :src="require('@/../static/img/Car_img/porsche-svg.svg')" id="Porche" alt="">
     </el-header>
     <el-main>
@@ -35,13 +36,18 @@ export default {
   },
   components:{
     navleft
+  },
+  methods:{
+    Go_Login(){
+      this.$router.push('/login')
+    }
   }
 }
 </script>
 
-<style>
-@import "../../../static/css/base.css";
+<style scoped>
 @import url("//unpkg.com/element-ui@2.15.1/lib/theme-chalk/index.css");
+@import "../../../static/css/base.css";
 .el-carousel__item h3 {
   color: #475669;
   font-size: 14px;
@@ -65,8 +71,14 @@ export default {
   margin-left: -61.5px;
 }
 #nav_01{
-  position: absolute;
-  left: 7%;
-  top: 10.5%;
+  z-index: 2;
+  position: fixed;
+  left: 4.4%;
+  top: 8.5%;
+}
+#logo{
+  position: relative;
+  top: 18px;
+  float: right;
 }
 </style>

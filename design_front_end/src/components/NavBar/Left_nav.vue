@@ -1,15 +1,45 @@
 <template>
-  <div id="root">
+  <div id="root" @mouseleave="hiddenFn">
     <div id="bar" v-for="item in car" :style="{width:Cwidth,height:Cheight,lineHeight:Cheight}">
-      <div class="barchild">
-        {{item}}
-<!--        <img :src="require('@/../static/img/Car_img/mi_01.webp')" alt="">-->
+<!--    <div id="bar" :style="{width:Cwidth,height:Cheight,lineHeight:Cheight}">-->
+      <ul>
+        <li>
+          <div class="barchild" @mouseenter="displayFn">{{item}}</div>
+<!--          <div class="barchild">崽崽</div>-->
+        </li>
+      </ul>
+    </div>
+    <div class="hidenbox" style="background-color: saddlebrown">
+      <div id="top"><img :src="require('@/../static/img/CarBac/porsche-normal_01.jpg')" alt=""></div>
+      <img id="spec" :src="require('@/../static/img/Car_img/porsche-model_01.webp')" alt="">
+      <div id="Price">
+        <div class="bottom">
+          <h2>1,278,000元起*</h2>
+          <h5>制造商建议零售价(含增值税)</h5>
+        </div>
+        <div class="bottom">
+          <h2>283 kW/385 PS</h2>
+          <h5>最大功率(KW)/最大功率(PS)</h5>
+        </div>
+        <div class="bottom">
+          <h2>4.2s</h2>
+          <h5>0 - 100 km/h加速时间</h5>
+          <h2>4.0s</h2>
+          <h5>0 - 100 km/h 加速时间,搭配Sport Chrono组件</h5>
+        </div>
       </div>
+    </div>
+    <div id="CarType">
+      <ul>
+        <li>911 Carrera & Targa车型</li>
+        <li>911 Turbo S车型</li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   name: "Left_nav",
   props:{
@@ -26,33 +56,31 @@ export default {
     return{
       car:["Taycan","911","Macan","Panamera","Cayenne","718"]
     }
+  },
+  methods:{
+    hiddenFn(){
+      $("#CarType").fadeOut("slow");
+      setTimeout(()=>{
+        $(".hidenbox").slideUp("slow");
+      },1000);
+      setTimeout(()=>{
+        $("#spec").fadeOut("slow");
+      },500)
+    },
+    displayFn(){
+      $("#CarType").fadeIn("slow");
+      setTimeout(()=>{
+        $(".hidenbox").slideDown("slow");
+      },500);
+      setTimeout(()=>{
+        $("#spec").fadeIn("slow");
+      },1000)
+    },
+
   }
 }
 </script>
 
 <style scoped>
-#root{
-  z-index: 2;
-  position: absolute;
-  /*background-color: salmon;*/
-}
-#bar{
-  display: flex;
-  flex-direction: column;
-}
-.barchild{
-  /*margin-top: 2px;*/
-  background-color:rgba(0,0,0,.3);
-  width: 237px;
-  flex: 1;
-  padding-left: 5px;
-  /*margin-left: 5px;*/
-  text-align: center;
-}
-#bar>div:hover{
-  background-color: firebrick;
-}
-img{
-  float: right;
-}
+@import "../../../static/css/Car_index/style.css";
 </style>
