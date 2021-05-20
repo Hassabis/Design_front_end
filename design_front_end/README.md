@@ -1,5 +1,7 @@
 # 毕设前端
 
+#作者:樊莲果
+
 ## 初始化项目所需要的的依赖
 ```
 npm install
@@ -15,12 +17,12 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
+### 测试命令
 ```
 npm run test
 ```
 
-### Lints and fixes files
+### eslint
 ```
 npm run lint
 ```
