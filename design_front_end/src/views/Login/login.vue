@@ -79,7 +79,7 @@ export default {
     check_username(){
       //用户名是5-20个字符 [a-zA-Z0-9_-]
       //定义正则
-      let re = /^[a-zA-Z0-9_-]{5,20}$/;
+      let re = /^[a-zA-Z0-9_-]{5,15}$/;
       if (re.test(this.username)){
         this.error_name = false;
       }else {

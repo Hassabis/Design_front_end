@@ -1,6 +1,6 @@
 #root{
     z-index: 2;
-    position: relative;
+    position: absolute;
     /*background-color: salmon;*/
 }
 #bar{
@@ -26,9 +26,9 @@
 }
 .hidenbox{
     display: none;
-    top: 10.5%;
-    left:22.8%;
-    position: fixed;
+    top: 20px;
+    left:277px;
+    position: absolute;
     width: 1168px;
     height: 563px;
 }
@@ -57,7 +57,7 @@
     position: absolute;
     /*top: -330px;*/
     top: 0;
-    left: 113%;
+    left: 111.1%;
 }
 #CarType>ul>li{
     margin-left: -38px;

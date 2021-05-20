@@ -1,26 +1,41 @@
 <template>
-  <el-container>
-    <el-header height="60px">
-      <img id="logo" :src="require('@/../static/img/login_img/user_logo.svg')" alt="" style="width: 39px;height: 39px" @click="Go_Login">
-      <img :src="require('@/../static/img/Car_img/porsche-svg.svg')" id="Porche" alt="">
-    </el-header>
-    <el-main>
-      <el-carousel height="564px">
-        <el-carousel-item v-for="item in img_box" :key="item">
-          <h3 class="small"><img :src="item" alt=""></h3>
-        </el-carousel-item>
-      </el-carousel>
-        <div style="position: absolute">
-        </div>
-    </el-main>
-    <div id="nav_01">
-      <navleft :Cheight="height"></navleft>
-    </div>
-  </el-container>
+  <div style="position: relative">
+    <el-container>
+      <el-header height="60px">
+        <img id="logo" :src="require('@/../static/img/login_img/user_logo.svg')" alt="" style="width: 39px;height: 39px" @click="Go_Login">
+        <img :src="require('@/../static/img/Car_img/porsche-svg.svg')" id="Porche" alt="">
+      </el-header>
+      <el-main>
+        <el-carousel height="564px">
+          <el-carousel-item v-for="item in img_box" :key="item">
+            <h3 class="small"><img :src="item" alt=""></h3>
+          </el-carousel-item>
+        </el-carousel>
+        <!--        <div style="position: absolute">-->
+        <!--        </div>-->
+      </el-main>
+      <div id="nav_01">
+        <navleft :Cheight="height"></navleft>
+      </div>
+      <span
+          style="position: fixed;
+        top: 670px;
+        font-size: 32px;
+        font-weight: 900;
+        left: 22px;
+        display: none"
+          id="server">
+      我们的服务
+    </span>
+    </el-container>
+  </div>
+
 </template>
 
 <script>
 import navleft from "@/components/NavBar/Left_nav"
+import imgbox from "../../components/imgbox";
+import $ from "jquery"
 export default {
   name: "index",
   data(){
@@ -35,11 +50,12 @@ export default {
     }
   },
   components:{
-    navleft
+    navleft,
+    imgbox
   },
   methods:{
     Go_Login(){
-      this.$router.push('/login')
+      this.$router.replace('/login')
     }
   }
 }
@@ -71,10 +87,10 @@ export default {
   margin-left: -61.5px;
 }
 #nav_01{
-  z-index: 2;
-  position: fixed;
+  z-index: 200;
+  position: absolute;
   left: 4.4%;
-  top: 8.5%;
+  top: 9.5%;
 }
 #logo{
   position: relative;

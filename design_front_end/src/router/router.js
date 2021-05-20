@@ -2,14 +2,19 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const login =()=> import("../views/Login/login")
 const index =()=> import("../views/HomePage/index")
-const LeftNav =()=>  import("../components/NavBar/Left_nav")
+// const imgbox =()=> import("../components/imgbox")
+const Bottom_page =()=> import("../views/HomePage/Bottom_page")
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '/',
       // redirect:('/index')
-      redirect:('/test')
+      redirect:('/index')
+    },
+    {
+      path:"/test",
+      component:Bottom_page
     },
     {
       // 主页
@@ -22,10 +27,6 @@ export default new Router({
       path:'/login',
       name:'login',
       component:login
-    },
-    {
-      path:"/test",
-      component:LeftNav
     }
   ],
   mode:"history"
