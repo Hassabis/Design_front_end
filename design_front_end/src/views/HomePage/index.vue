@@ -18,7 +18,7 @@
         <navleft :Cheight="height"></navleft>
       </div>
       <span
-          style="position: fixed;
+          style="position: absolute;
         top: 670px;
         font-size: 32px;
         font-weight: 900;
@@ -27,6 +27,9 @@
           id="server">
       我们的服务
     </span>
+      <div id="buttom">
+        <Bottom_page></Bottom_page>
+      </div>
     </el-container>
   </div>
 
@@ -35,7 +38,7 @@
 <script>
 import navleft from "@/components/NavBar/Left_nav"
 import imgbox from "../../components/imgbox";
-import $ from "jquery"
+import Bottom_page from "./Bottom_page";
 export default {
   name: "index",
   data(){
@@ -51,7 +54,8 @@ export default {
   },
   components:{
     navleft,
-    imgbox
+    imgbox,
+    Bottom_page
   },
   methods:{
     Go_Login(){
@@ -90,11 +94,15 @@ export default {
   z-index: 200;
   position: absolute;
   left: 4.4%;
-  top: 9.5%;
+  top: 65px
 }
 #logo{
   position: relative;
   top: 18px;
   float: right;
+}
+#buttom{
+  margin: 40px auto;
+  margin-left: 30px;
 }
 </style>

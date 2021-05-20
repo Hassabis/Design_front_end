@@ -4,17 +4,18 @@ const login =()=> import("../views/Login/login")
 const index =()=> import("../views/HomePage/index")
 // const imgbox =()=> import("../components/imgbox")
 const Bottom_page =()=> import("../views/HomePage/Bottom_page")
+const pomes =()=> import("../views/HomePage/Pome")
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '/',
       // redirect:('/index')
-      redirect:('/index')
+      redirect:('/test')
     },
     {
       path:"/test",
-      component:Bottom_page
+      component:pomes
     },
     {
       // 主页
