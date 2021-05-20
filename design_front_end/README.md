@@ -1,16 +1,16 @@
 # design_front_end
 
-## Project setup
+## 初始化项目所需要的的依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 运行命令(必须先有依赖)
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包项目
 ```
 npm run build
 ```
