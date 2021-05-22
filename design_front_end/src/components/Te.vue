@@ -2,150 +2,42 @@
   <div>
     <full-page :options="options" id="fullpage" ref="fullpage" v-cloak>
       <div class="section" :style="{backgroundImage:'url(' + bacimg +')'}">
-        <div class="slide">
+        <div class="slide" v-for="item in metadata">
           <div class="meta">
-            <h2 >718 Cayman</h2>
-            <h4>545,000元起*</h4>
-            <img :src="require('@/../static/img/Car_img/porsche-model_03.webp')" alt="">
+            <h2>{{item.name}}</h2>
+            <h4>{{ item.price }}</h4>
+            <img :src="item.path" alt="">
             <div class="waote">
               <div>
                 <span>
-                  184kw/250PS
+                  {{item.power}}
                 </span><br>
                 <span class="des">
-                  最大功率(kw)/最大功率(PS)
+                  {{item.powerdes}}
                 </span>
               </div>
               <div>
-                <span>5.6s</span><br>
-                <span class="des">0 - 100km/h加速时间</span>
+                <span>{{item.second}}</span><br>
+                <span class="des">{{item.secondes}}</span>
               </div>
               <div>
-                <span>260km/h</span><br>
-                <span class="des">最高时速</span>
+                <span>{{item.speeddes}}</span><br>
+                <span class="des">{{ item.speeddes }}</span>
               </div>
               <div class="but">
                 <div class="chi">
-                  技术数据
+                  {{ item.tecdata }}
                 </div>
                 <div class="chi">
-                  车辆配置器
+                  {{ item.carconfig }}
                 </div>
                 <div class="chi">
-                  比较
+                  {{ item.compare }}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="slide">
-          <div class="meta">
-            <h2>718 Spyder</h2>
-            <h4>738,000元起*</h4>
-            <img :src="require('@/../static/img/Car_img/porsche-model_01.webp')" alt="">
-            <div class="waote">
-              <div>
-                <span>
-                  220kw/300PS
-                </span><br>
-                <span class="des">
-                  最大功率(kw)/最大功率(PS)
-                </span>
-              </div>
-              <div>
-                <span>4.7s</span><br>
-                <span class="des">0 - 100km/h加速时间</span>
-              </div>
-              <div>
-                <span>270km/h</span><br>
-                <span class="des">最高时速</span>
-              </div>
-              <div class="but">
-                <div class="chi">
-                  技术数据
-                </div>
-                <div class="chi">
-                  车辆配置器
-                </div>
-                <div class="chi">
-                  比较
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <        <div class="slide">
-        <div class="meta">
-          <h2 >911 Carrera & Targa</h2>
-          <h4>1,278,000元起*</h4>
-          <img :src="require('@/../static/img/Car_img/911_Carrera.webp')" alt="">
-          <div class="waote">
-            <div>
-                <span>
-                  283kw/385PS
-                </span><br>
-              <span class="des">
-                  最大功率(kw)/最大功率(PS)
-                </span>
-            </div>
-            <div>
-              <span>4.2s</span><br>
-              <span class="des">0 - 100km/h加速时间</span>
-            </div>
-            <div>
-              <span>293km/h</span><br>
-              <span class="des">最高时速</span>
-            </div>
-            <div class="but">
-              <div class="chi">
-                技术数据
-              </div>
-              <div class="chi">
-                车辆配置器
-              </div>
-              <div class="chi">
-                比较
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="slide">
-        <div class="meta">
-          <h2 >911 Carrear4</h2>
-          <h4>1,356,000元起*</h4>
-          <img :src="require('@/../static/img/Car_img/911_carrear4.webp')" alt="">
-          <div class="waote">
-            <div>
-                <span>
-                  283kw/385PS
-                </span><br>
-              <span class="des">
-                  最大功率(kw)/最大功率(PS)
-                </span>
-            </div>
-            <div>
-              <span>4.2s</span><br>
-              <span class="des">0 - 100km/h加速时间</span>
-            </div>
-            <div>
-              <span>291km/h</span><br>
-              <span class="des">最高时速</span>
-            </div>
-            <div class="but">
-              <div class="chi">
-                技术数据
-              </div>
-              <div class="chi">
-                车辆配置器
-              </div>
-              <div class="chi">
-                比较
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       </div>
       <div class="section">
         <h3>
@@ -305,31 +197,125 @@ export default {
         verticalCentered: true,
       },
       bacimg:require("@/../static/img/CarBac/Bac_01.webp"),
+      metadata:[
+        {
+          name:"718 Cayman",
+          price:"545,000元起 *",
+          path:require('@/../static/img/Car_img/porsche-model_03.webp'),
+          power:"184kw/250PS",
+          powerdes:"最大功率(kw)/最大功率(PS)",
+          second:"5.6s",
+          secondes:"0 - 100km/h加速时间",
+          speed:"260km/h",
+          speeddes:"最高时速",
+          tecdata:"技术数据",
+          carconfig:"车辆配置器",
+          compare:"比较"
+        },
+        {
+          name:"718 Spyder",
+          price:"738,000元起 *",
+          path:require('@/../static/img/Car_img/porsche-model_01.webp'),
+          power:"230kw/300PS",
+          powerdes:"最大功率(kw)/最大功率(PS)",
+          second:"4.7s",
+          secondes:"0 - 100km/h加速时间",
+          speed:"270km/h",
+          speeddes:"最高时速",
+          tecdata:"技术数据",
+          carconfig:"车辆配置器",
+          compare:"比较"
+        },
+        {
+          name:"911 Carrera & Targa",
+          price:"1,278,000元起 *",
+          path:require('@/../static/img/Car_img/911_Carrera.webp'),
+          power:"283kw/385PS",
+          powerdes:"最大功率(kw)/最大功率(PS)",
+          second:"4,2s",
+          secondes:"0 - 100km/h加速时间",
+          speed:"293km/h",
+          speeddes:"最高时速",
+          tecdata:"技术数据",
+          carconfig:"车辆配置器",
+          compare:"比较"
+        },
+        {
+          name:"718 Cayman",
+          price:"545,000元起 *",
+          path:require('@/../static/img/Car_img/911_carrear4.webp'),
+          power:"184kw/250PS",
+          powerdes:"最大功率(kw)/最大功率(PS)",
+          second:"5.6s",
+          secondes:"0 - 100km/h加速时间",
+          speed:"260km/h",
+          speeddes:"最高时速",
+          tecdata:"技术数据",
+          carconfig:"车辆配置器",
+          compare:"比较"
+        },
+        {
+          name:"718 Cayman",
+          price:"545,000元起 *",
+          path:require('@/../static/img/Car_img/porsche-model_03.webp'),
+          power:"184kw/250PS",
+          powerdes:"最大功率(kw)/最大功率(PS)",
+          second:"5.6s",
+          secondes:"0 - 100km/h加速时间",
+          speed:"260km/h",
+          speeddes:"最高时速",
+          tecdata:"技术数据",
+          carconfig:"车辆配置器",
+          compare:"比较"
+        },
+        {
+          name:"718 Cayman",
+          price:"545,000元起 *",
+          path:require('@/../static/img/Car_img/porsche-model_03.webp'),
+          power:"184kw/250PS",
+          powerdes:"最大功率(kw)/最大功率(PS)",
+          second:"5.6s",
+          secondes:"0 - 100km/h加速时间",
+          speed:"260km/h",
+          speeddes:"最高时速",
+          tecdata:"技术数据",
+          carconfig:"车辆配置器",
+          compare:"比较"
+        }
+      ]
     };
+
   },
   methods: {
     afterLoad: function(origin, destination, direction) {
       console.log('After load....');
       console.log(destination);
+      if (destination.index === 0){
+        this.$refs.fullpage.init();
+      }
       if (destination.index === 1){
 
         this.dis()
         $('video').get(parseInt(destination.index - 1)).play()
+        this.$refs.fullpage.init();
 
       }else if (destination.index === 2){
 
         this.dis_02()
         $('video').get(parseInt(destination.index - 1)).play()
         console.log("第三页")
+        this.$refs.fullpage.init();
 
       }else if (destination.index === 3){
 
         this.dis_03()
         $('video').get(parseInt(destination.index - 1)).play()
+        this.$refs.fullpage.init();
 
       }else if (destination.index === 4){
 
         this.dis_04()
+        this.$refs.fullpage.init();
 
       }
     },
