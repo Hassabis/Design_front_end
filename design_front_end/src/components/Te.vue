@@ -312,14 +312,25 @@ export default {
       console.log('After load....');
       console.log(destination);
       if (destination.index === 1){
+
         this.dis()
+        $('video').get(parseInt(destination.index - 1)).play()
+
       }else if (destination.index === 2){
+
         this.dis_02()
+        $('video').get(parseInt(destination.index - 1)).play()
         console.log("第三页")
+
       }else if (destination.index === 3){
+
         this.dis_03()
+        $('video').get(parseInt(destination.index - 1)).play()
+
       }else if (destination.index === 4){
+
         this.dis_04()
+
       }
     },
     dis(){
