@@ -201,15 +201,76 @@
         </div>
       </div>
       <div class="section">
-        <el-carousel :interval="4000" type="card" height="600px">
-          <el-carousel-item v-for="item in 6" :key="item.index">
-            <h3 class="medium"><img :src="item.path" alt=""></h3>
-            <div id="hidden">
-              <div class="sentense">{{item}}</div>
-              <span class="Ser">{{ item }}</span>
-            </div>
-          </el-carousel-item>
-        </el-carousel>
+        <h1>诗和远方，本该属于我们</h1>
+        <div class="accordion">
+          <!-- 在这里我们需要复制5个一样的代码，并修改内容 -->
+          <ul>
+            <li tabindex="1">
+              <div>
+                <a href="#">
+                  <h2>阳光？夏天？</h2>
+                  <p>这本该属于成功的您，放下所有，享受当下</p>
+                </a>
+              </div>
+            </li>
+
+            <li tabindex="2">
+              <div>
+                <a href="#">
+                  <h2>微风和你</h2>
+                  <p>有风拂过脸颊，掠起长发。月光如水平静柔和。我心如这月光，平静柔和。不敢去刻意追求什么，只是希望所有美好的开端都有一个美好的结局，一如这春夜长长远远。</p>
+                </a>
+              </div>
+            </li>
+
+            <li tabindex="3">
+              <div>
+                <a href="#">
+                  <h2>兜个风？</h2>
+                  <p>人世繁华多笑语，谁又空余两鬓风呢？</p>
+                </a>
+              </div>
+            </li>
+
+            <li tabindex="4">
+              <div>
+                <a href="#">
+                  <h2>稳重</h2>
+                  <p>您要的安全，我们都能给</p>
+                </a>
+              </div>
+            </li>
+
+            <li tabindex="5">
+              <div>
+                <a href="#">
+                  <h2>风景</h2>
+                  <p>要么读书要么旅行，灵魂和身体，必须有一个在路上。</p>
+                </a>
+              </div>
+            </li>
+
+            <li tabindex="6">
+              <div>
+                <a href="#">
+                  <h2>身未动，心已远。</h2>
+                  <p>每个人心中，都会有一个古镇情怀，流水江南，烟笼人家。</p>
+                </a>
+              </div>
+            </li>
+            <li tabindex="7">
+              <div>
+                <a href="#">
+                  <h2>我们一定会达到那个远方</h2>
+                  <p>对，当然得和你</p>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p class="about">
+          By <a href="javascript:;">Porsche</a>
+        </p>
       </div>
     </full-page>
   </div>
@@ -244,28 +305,6 @@ export default {
         verticalCentered: true,
       },
       bacimg:require("@/../static/img/CarBac/Bac_01.webp"),
-      img_Box:[
-        {
-          path:require("@/../static/img/Car_img/nav_01.jpg"),
-          sentense:"Porsche的'竞'化论",
-          tips:"心动了吗"
-        },
-        {
-          path: require("@/../static/img/Car_img/nav_02.jpg"),
-          sentense:"生来就和别人不同",
-          tips:"你也是吗?"
-        },
-        {
-          path:require("@/../static/img/Car_img/nav_05.jpg"),
-          sentense:"专注跑车性能70年",
-          tips:"我们代表顶峰"
-        },
-        {
-          path:require("@/../static/img/Car_img/nav_04.jpg"),
-          sentense:"高级定制，打造你自己的专属",
-          tips:"Porsche"
-        }
-      ]
     };
   },
   methods: {
@@ -309,37 +348,5 @@ export default {
 
 <style scoped>
 @import "../../static/css/Detail/style.css";
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 200px;
-  margin: 0;
-}
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n+1) {
-  background-color: #d3dce6;
-}
-.medium>img{
-  width: 100%;
-  height: 100%;
-}
-#hidden{
-  position: absolute;
-  top: 300px;
-  margin-left: 10px;
-}
-#hidden:hover{
-  color: firebrick;
-}
-.sentense{
-  font-size: 34px;
-}
-.Ser{
-  font-size: 24px;
-}
+@import "../../static/css/Detail/bottom.css";
 </style>

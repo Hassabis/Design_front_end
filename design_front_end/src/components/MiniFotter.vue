@@ -51,7 +51,7 @@ export default {
 }
 ul{
   position: relative;
-  left: -19px;
+  left: -15px;
 }
 ul,li{
   display: inline-block;
@@ -66,6 +66,7 @@ li{
   font-size: 12px;
   position: absolute;
   left: 15px;
+  margin-top: 5px;
 }
 #tips>span{
   margin-left: 30px;
