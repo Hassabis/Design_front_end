@@ -31,8 +31,8 @@
     </div>
     <div id="CarType">
       <ul>
-        <li>911 Carrera & Targa车型</li>
-        <li>911 Turbo S车型</li>
+        <li @click="Go_detail">911 Carrera & Targa车型</li>
+        <li @click="Go_detail">911 Turbo S车型</li>
       </ul>
     </div>
   </div>
@@ -76,7 +76,9 @@ export default {
         $("#spec").fadeIn("slow");
       },1000)
     },
-
+    Go_detail(){
+      this.$router.push("/test")
+    }
   }
 }
 </script>

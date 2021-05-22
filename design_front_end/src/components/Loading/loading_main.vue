@@ -19,6 +19,8 @@ export default {
   border-radius: 10px;
   text-align: center;
   line-height: 40px;
+  position: relative;
+  top: 55px;
   font-family: "Microsoft YaHei UI Light";
   font-size: 18px;
 }

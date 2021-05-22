@@ -2,9 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const login =()=> import("../views/Login/login")
 const index =()=> import("../views/HomePage/index")
-// const imgbox =()=> import("../components/imgbox")
+const imgbox =()=> import("../components/VueVideo")
 const Bottom_page =()=> import("../views/HomePage/Bottom_page")
 const pomes =()=> import("../views/HomePage/Pome")
+const Meun = ()=> import("../components/NavBar/Menu")
+// const search =()=> import("../components/NavBar/Search")
+const fotter =()=> import("../components/fotter_v")
+const Mini = () => import("../components/MiniFotter")
+const scroll =()=> import("../components/Scroll")
+const Te =()=> import("../components/Te")
+import Learn from "../components/Learn";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -15,7 +22,7 @@ export default new Router({
     },
     {
       path:"/test",
-      component:pomes
+      component:Te
     },
     {
       // 主页

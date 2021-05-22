@@ -49,6 +49,9 @@
       <span>Poems by Porsche</span>
       <Pome></Pome>
     </div>
+    <div id="video">
+      <Vuevideo :cwidth="width"></Vuevideo>
+    </div>
   </div>
 </template>
 
@@ -56,9 +59,12 @@
 import loading from "@/components/Loading/loading_main"
 import $ from "jquery";
 import Pome from "./Pome"
+import Scroll from "../../components/Scroll";
+import Vuevideo from "../../components/VueVideo";
 export default {
   data: () => ({
-    show2: false
+    show2: false,
+    // width:"2400px"
   }),
   methods:{
     ChangeLoading(){
@@ -72,13 +78,17 @@ export default {
         $("#pomes").slideDown("slow")
       },1000)
       setTimeout(()=>{
-
-      })
+        $("#scroll").slideDown("slow")
+      },1000)
+      setTimeout(()=>{
+        $("#video").slideDown("slow")
+      },1000)
     }
   },
   components:{
     loading,
-    Pome
+    Pome,
+    Vuevideo
   }
 }
 </script>
@@ -122,5 +132,14 @@ export default {
   top: 280px;
   font-size: 32px;
   font-weight: 900;
+}
+#video{
+  display: none;
+  position: relative;
+  top: 300px;
+  height: 700px;
+  font-size: 32px;
+  font-weight: 900;
+  /*left: 500px;*/
 }
 </style>

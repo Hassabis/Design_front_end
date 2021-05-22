@@ -1,9 +1,20 @@
 <template>
   <div style="position: relative">
     <el-container>
-      <el-header height="60px">
+      <el-header height="120px">
+        <div id="search">
+          <Search></Search>
+          <div id="cli">
+            <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          </div>
+        </div>
+        <div id="meun">
+          <Menu></Menu>
+        </div>
         <img id="logo" :src="require('@/../static/img/login_img/user_logo.svg')" alt="" style="width: 39px;height: 39px" @click="Go_Login">
+        <div id="line1"></div>
         <img :src="require('@/../static/img/Car_img/porsche-svg.svg')" id="Porche" alt="">
+        <div id="line2"></div>
       </el-header>
       <el-main>
         <el-carousel height="564px">
@@ -19,7 +30,7 @@
       </div>
       <span
           style="position: absolute;
-        top: 670px;
+        top: 720px;
         font-size: 32px;
         font-weight: 900;
         left: 22px;
@@ -30,6 +41,9 @@
       <div id="buttom">
         <Bottom_page></Bottom_page>
       </div>
+      <div id="our">
+        <MiniFotter></MiniFotter>
+      </div>
     </el-container>
   </div>
 
@@ -37,8 +51,12 @@
 
 <script>
 import navleft from "@/components/NavBar/Left_nav"
-import imgbox from "../../components/imgbox";
 import Bottom_page from "./Bottom_page";
+import Menu from "../../components/NavBar/Menu";
+import Search from "../../components/NavBar/Search";
+import fotter_v from "../../components/fotter_v";
+import MiniFotter from "../../components/MiniFotter";
+import $ from "jquery"
 export default {
   name: "index",
   data(){
@@ -49,18 +67,22 @@ export default {
           require("@/../static/img/Car_img/porsche-normal_03.webp"),
           require("@/../static/img/Car_img/porsche-normal_04.webp")
       ],
-      height:'94px'
+      height:'94px',
+      width:"1400px"
     }
   },
   components:{
     navleft,
-    imgbox,
-    Bottom_page
+    Bottom_page,
+    Menu,
+    Search,
+    fotter_v,
+    MiniFotter,
   },
   methods:{
     Go_Login(){
       this.$router.replace('/login')
-    }
+    },
   }
 }
 </script>
@@ -94,15 +116,53 @@ export default {
   z-index: 200;
   position: absolute;
   left: 4.4%;
-  top: 65px
+  top: 125px
 }
 #logo{
   position: relative;
-  top: 18px;
+  top: 78px;
   float: right;
 }
 #buttom{
   margin: 40px auto;
   margin-left: 30px;
+}
+#meun{
+  position: absolute;
+  right: 90px;
+  top: 70px;
+}
+#line1{
+  background-color: #e3e4e4;
+  width: 650px;
+  height: 1px;
+  position: absolute;
+  top: 60px;
+  left: 30px;
+}
+#line2{
+  background-color: #e3e4e4;
+  width: 650px;
+  height: 1px;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+}
+#search{
+  position: absolute;
+  left: 115px;
+  top: 90px;
+  width: 400px;
+}
+#cli{
+  position: absolute;
+  left: 195px;
+  top: 0;
+}
+#our{
+  margin: 10px auto;
+  margin-top: 460px;
+  /*margin-top: -130px;*/
+  bottom: 10px;
 }
 </style>

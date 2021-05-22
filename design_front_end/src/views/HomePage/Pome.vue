@@ -1,6 +1,6 @@
 <template>
   <el-carousel :interval="4000" type="card" height="400px">
-    <el-carousel-item v-for="item in img_Box" :key="item">
+    <el-carousel-item v-for="item in img_Box" :key="item.index">
       <h3 class="medium"><img :src="item.path" alt=""></h3>
       <div id="hidden">
         <div class="main">{{item.sentense}}</div>
