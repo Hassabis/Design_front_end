@@ -28,60 +28,40 @@
                     </div>
                     <div id="basicmessage">
                       基本信息
-                      <span id="edit" style="float: right;color: deepskyblue" @click="drawer = true" type="primary">编辑</span>
+                      <span id="edit" style="float: right;color: deepskyblue" @click="dialog = true" type="primary">编辑</span>
                       <el-drawer
-                          title="基本个人信息修改"
-                          :visible.sync="drawer"
+                          title="个人基本信息修改"
+                          :before-close="handleClose"
+                          :visible.sync="dialog"
                           :direction="direction"
-                          :before-close="handleClose">
-                        <form action="">
-                          <div id="inner">
-                            <el-form ref="form" :model="form" label-width="80px">
-                              <el-form-item label="姓名">
-                                <el-input v-model="form.name"></el-input>
-                              </el-form-item>
-                              <el-form-item label="职业">
-                                <el-input v-model="form.name"></el-input>
-                              </el-form-item>
-                              <el-form-item label="性别">
-                                <el-select v-model="form.region" placeholder="靓仔还是靓妹？">
-                                  <el-option label="男" value="male"></el-option>
-                                  <el-option label="女" value="female"></el-option>
-                                </el-select>
-                              </el-form-item>
-                              <el-form-item label="生日">
-                                <el-col :span="11">
-                                  <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-                                </el-col>
-<!--                                <el-col class="line" :span="2"></el-col>-->
-<!--                                <el-col :span="11">-->
-<!--                                  <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>-->
-<!--                                </el-col>-->
-                              </el-form-item>
-<!--                              <el-form-item label="活动性质">-->
-<!--                                <el-checkbox-group v-model="form.type">-->
-<!--                                  <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>-->
-<!--                                  <el-checkbox label="地推活动" name="type"></el-checkbox>-->
-<!--                                  <el-checkbox label="线下主题活动" name="type"></el-checkbox>-->
-<!--                                  <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>-->
-<!--                                </el-checkbox-group>-->
-<!--                              </el-form-item>-->
-<!--                              <el-form-item label="特殊资源">-->
-<!--                                <el-radio-group v-model="form.resource">-->
-<!--                                  <el-radio label="线上品牌商赞助"></el-radio>-->
-<!--                                  <el-radio label="线下场地免费"></el-radio>-->
-<!--                                </el-radio-group>-->
-<!--                              </el-form-item>-->
-<!--                              <el-form-item label="活动形式">-->
-<!--                                <el-input type="textarea" v-model="form.desc"></el-input>-->
-<!--                              </el-form-item>-->
-                              <el-form-item>
-                                <el-button type="primary" @click="onSubmit">修改</el-button>
-                                <el-button>取消</el-button>
-                              </el-form-item>
-                            </el-form>
+                          custom-class="demo-drawer"
+                          ref="drawer"
+                      >
+                        <div class="demo-drawer__content">
+                          <el-form ref="form" :model="form" label-width="80px">
+                            <el-form-item label="姓名">
+                              <el-input v-model="form.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="性别">
+                              <el-select v-model="form.region" placeholder="靓仔还是崽崽">
+                                <el-option label="男" value="male"></el-option>
+                                <el-option label="女" value="female"></el-option>
+                              </el-select>
+                            </el-form-item>
+                            <el-form-item label="生日">
+                              <el-col :span="11">
+                                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                              </el-col>
+                            </el-form-item>
+                            <el-form-item label="职业">
+                              <el-input v-model="form.name"></el-input>
+                            </el-form-item>
+                          <div class="demo-drawer__footer">
+                            <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
+                            <el-button @click="cancelForm">取 消</el-button>
                           </div>
-                        </form>
+                          </el-form>
+                        </div>
                       </el-drawer>
                     </div>
                     <div id="message">
@@ -191,6 +171,9 @@ export default {
   name: "UserCenter",
   data() {
     return {
+      dialog:false,
+      timer: null,
+      loading:false,
       activeName: 'first',
       tabPosition: 'left',
       input: '',
@@ -245,9 +228,19 @@ export default {
       console.log(tab, event);
     },
     handleClose(done) {
-      this.$confirm('确认关闭？')
+      if (this.loading) {
+        return;
+      }
+      this.$confirm('确认提交嘛？')
           .then(_ => {
-            done();
+            this.loading = true;
+            this.timer = setTimeout(() => {
+              done();
+              // 动画关闭需要一定的时间
+              setTimeout(() => {
+                this.loading = false;
+              }, 400);
+            }, 2000);
           })
           .catch(_ => {});
       console.log(this.value2)
@@ -255,7 +248,11 @@ export default {
     onSubmit() {
       console.log('submit!');
       $(".el-dialog__close").click();
-
+    },
+    cancelForm() {
+      this.loading = false;
+      this.dialog = false;
+      clearTimeout(this.timer);
     }
   },
   handleClick2(tab, event) {
@@ -322,20 +319,6 @@ export default {
   margin-left: 160px;
   margin-top: 30px;
 }
-/*>>>.el-tabs--left{*/
-/*  padding: 0 20px;*/
-/*  height: 264px;*/
-/*  -webkit-box-sizing: border-box;*/
-/*  box-sizing: border-box;*/
-/*  line-height: 94px;*/
-/*  display: inline-block;*/
-/*  list-style: none;*/
-/*  font-size: 14px;*/
-/*  font-weight: 500;*/
-/*  color: #303133;*/
-/*  position: relative;*/
-/*  border-bottom: none;*/
-/*}*/
 >>>.el-tabs--left span{
   font-size: 14px;
 }
@@ -460,5 +443,8 @@ export default {
   padding-bottom: 10px;
   background-color: #e3e4e4;
   margin-top: 25px;
+}
+.demo-drawer__footer{
+  margin-left: 81px;
 }
 </style>
