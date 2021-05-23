@@ -42,6 +42,10 @@ export default new Router({
       path:'/detail',
       name:"CarDetail",
       component:Te
+    },
+    {
+      path:'/profile',
+      component:user
     }
   ],
   mode:"history"
