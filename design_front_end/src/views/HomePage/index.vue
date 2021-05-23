@@ -81,7 +81,7 @@ export default {
   },
   methods:{
     Go_Login(){
-      this.$router.replace('/login')
+      this.$router.replace('/profile')
       setTimeout(()=>{
         location.reload();
       },10)

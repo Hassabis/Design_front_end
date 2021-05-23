@@ -30,11 +30,58 @@
                       基本信息
                       <span id="edit" style="float: right;color: deepskyblue" @click="drawer = true" type="primary">编辑</span>
                       <el-drawer
-                          title="我是标题"
+                          title="基本个人信息修改"
                           :visible.sync="drawer"
                           :direction="direction"
                           :before-close="handleClose">
-                        <span>我来啦!</span>
+                        <form action="">
+                          <div id="inner">
+                            <el-form ref="form" :model="form" label-width="80px">
+                              <el-form-item label="姓名">
+                                <el-input v-model="form.name"></el-input>
+                              </el-form-item>
+                              <el-form-item label="职业">
+                                <el-input v-model="form.name"></el-input>
+                              </el-form-item>
+                              <el-form-item label="性别">
+                                <el-select v-model="form.region" placeholder="靓仔还是靓妹？">
+                                  <el-option label="男" value="male"></el-option>
+                                  <el-option label="女" value="female"></el-option>
+                                </el-select>
+                              </el-form-item>
+                              <el-form-item label="生日">
+                                <el-col :span="11">
+                                  <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                                </el-col>
+                                <el-col class="line" :span="2">-</el-col>
+<!--                                <el-col :span="11">-->
+<!--                                  <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>-->
+<!--                                </el-col>-->
+                              </el-form-item>
+<!--                              <el-form-item label="活动性质">-->
+<!--                                <el-checkbox-group v-model="form.type">-->
+<!--                                  <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>-->
+<!--                                  <el-checkbox label="地推活动" name="type"></el-checkbox>-->
+<!--                                  <el-checkbox label="线下主题活动" name="type"></el-checkbox>-->
+<!--                                  <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>-->
+<!--                                </el-checkbox-group>-->
+<!--                              </el-form-item>-->
+<!--                              <el-form-item label="特殊资源">-->
+<!--                                <el-radio-group v-model="form.resource">-->
+<!--                                  <el-radio label="线上品牌商赞助"></el-radio>-->
+<!--                                  <el-radio label="线下场地免费"></el-radio>-->
+<!--                                </el-radio-group>-->
+<!--                              </el-form-item>-->
+<!--                              <el-form-item label="活动形式">-->
+<!--                                <el-input type="textarea" v-model="form.desc"></el-input>-->
+<!--                              </el-form-item>-->
+                              <el-form-item>
+                                <el-button type="primary" @click="onSubmit">修改</el-button>
+                                <el-button>取消</el-button>
+                              </el-form-item>
+                            </el-form>
+                          </div>
+                        </form>
                       </el-drawer>
                     </div>
                     <div id="message">
@@ -48,6 +95,7 @@
                       </span><br>
                       <span class="message">
                         生日 <br>
+<!--                        <span class="guo">{{value2.getFullYear()+'-'+ (value2.getMonth() + 1) +'-'+ value2.getDate() }}</span>-->
                         <span class="guo">2001-02-11</span>
                       </span>
                       <span class="message">
@@ -70,13 +118,28 @@
                   <span slot="label">
                     <i class="el-icon-magic-stick"></i> 收货地址
                   </span>
-                  收货地址
+                  <div id="home">
+                    <span id="homeadderss">收货地址</span>
+                  </div>
+                  <div v-if="adderss.length === 0" id="hasno">
+                    <i class="el-icon-circle-plus" style="cursor: pointer;color: deepskyblue;font-size: 18px">新增收货地址</i>
+                  </div>
+                  <div v-else id="have" style="width: 350px;text-align: left">
+                    <div id="detail" style="font-family: 'Microsoft YaHei UI Light'">
+                      <h3>樊莲果</h3><h4 id="default">默认地址</h4>
+                      <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
+                      <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
+                      <div id="opertion">
+                        <span>编辑</span><span>删除</span>
+                      </div>
+                    </div>
+                  </div>
                 </el-tab-pane>
                 <el-tab-pane>
                   <span slot="label">
                     <i class="el-icon-star-off"></i> 我的收藏
                   </span>
-                  收藏
+
                 </el-tab-pane>
               </el-tabs>
             </div>
@@ -114,6 +177,51 @@ export default {
       input: '',
       drawer: false,
       direction: 'rtl',
+      adderss:[
+        {
+          name:"崽崽"
+        }
+      ],
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        },
+        shortcuts: [{
+          text: '今天',
+          onClick(picker) {
+            picker.$emit('pick', new Date());
+          }
+        }, {
+          text: '昨天',
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24);
+            picker.$emit('pick', date);
+          }
+        }, {
+          text: '一周前',
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+            picker.$emit('pick', date);
+          }
+        }]
+      },
+      value1: '',
+      value2: '',
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      onSubmit() {
+        console.log('submit!');
+      }
     };
   },
   methods: {
@@ -126,6 +234,7 @@ export default {
             done();
           })
           .catch(_ => {});
+      console.log(this.value2)
     }
   },
   handleClick2(tab, event) {
@@ -133,6 +242,11 @@ export default {
   },
   components:{
     MiniFotter
+  },
+  computed:{
+    // birthday(){
+    //   return this.value2.getFullYear() +'-'+ this.value2.getMonth() + 1 + '-' + this.value2.getDate()
+    // }
   }
 }
 </script>
@@ -265,5 +379,52 @@ export default {
 #motto{
   font-family: "Microsoft YaHei UI Light";
   margin-top: 70px;
+}
+#home{
+  margin-left: 100px;
+  margin-top: 3px;
+}
+#homeadderss{
+  display: block;
+  font-family: "Microsoft YaHei UI Light";
+  font-size: 28px;
+}
+#hasno{
+  margin-left: 95px;
+  margin-top: 34px;
+}
+#have{
+  background-color: rgba(0,0,0,.1);
+  position: relative;
+  margin-left: 100px;
+  margin-top: 25px;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 2px;
+  padding-bottom: 10px;
+}
+#opertion{
+  margin-top: 15px;
+}
+#opertion>span{
+  display: inline-block;
+  color: deepskyblue;
+}
+#opertion>span:nth-last-child(1){
+  margin-left: 10px;
+}
+#default{
+  position: absolute;
+  right: 10px;
+  font-size: 12px;
+  padding: 1px;
+  width: 100px;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid darkkhaki;
+  top: 5px;
+}
+#inner>span{
+  display: inline-block;
 }
 </style>
