@@ -12,7 +12,7 @@ npm install
 npm run serve
 ```
 
-### 打包项目
+### 打包项目（打包后只需将dist文件放在服务器上即可运行项目）
 ```
 npm run build
 ```
