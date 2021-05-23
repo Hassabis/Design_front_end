@@ -1,6 +1,6 @@
 # Graduation project(webpage)
 
-# Author:樊莲果
+# Author：樊莲果
 
 ## 初始化项目所需要的的依赖
 ```
