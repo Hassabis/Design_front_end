@@ -186,6 +186,7 @@
 
 <script>
 import MiniFotter from "../../components/MiniFotter";
+import $ from "jquery"
 export default {
   name: "UserCenter",
   data() {
@@ -236,9 +237,6 @@ export default {
         type: [],
         resource: '',
         desc: ''
-      },
-      onSubmit() {
-        console.log('submit!');
       }
     };
   },
@@ -253,6 +251,11 @@ export default {
           })
           .catch(_ => {});
       console.log(this.value2)
+    },
+    onSubmit() {
+      console.log('submit!');
+      $(".el-dialog__close").click();
+
     }
   },
   handleClick2(tab, event) {
