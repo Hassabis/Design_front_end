@@ -173,7 +173,7 @@
         </p>
       </div>
         <div id="our">
-          <MiniFotter :cleft="-180+'px'"></MiniFotter>
+          <MiniFotter :cleft="-180+'px'" :cnavl="640+'px'"></MiniFotter>
         </div>
       </div>
     </full-page>

@@ -13,7 +13,7 @@
       <span>©Porsche版权所有</span>
       <span>京ICP备 1314520号</span>
       <span id="spc"><img id="police" :src="require('@/../static/img/Common/Police.png')" alt="">京公安备案 13145209999号</span>
-      <nav>孤鸿踏雪，似我</nav>
+      <nav :style="{left: cnavl}">孤鸿踏雪，似我</nav>
     </div>
   </div>
   <div id="right">
@@ -35,6 +35,11 @@ export default {
     Cleft:{
       type:String,
       require:false
+    },
+    cnavl:{
+      type:String,
+      require: false,
+      default:"469px"
     }
   }
 }
@@ -45,12 +50,11 @@ nav{
   color: darkgoldenrod;
   position: absolute;
   bottom: 0;
-  left: 469px;
 }
 #root{
   position: relative;
   height: 100px;
-  width: 99vw;
+  width: 97vw;
   /*background-color: salmon;*/
   border-top: 1px solid #e3e4e4;
   /*background-color: salmon;*/
