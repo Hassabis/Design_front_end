@@ -124,13 +124,31 @@
                   <div v-if="adderss.length === 0" id="hasno">
                     <i class="el-icon-circle-plus" style="cursor: pointer;color: deepskyblue;font-size: 18px">新增收货地址</i>
                   </div>
-                  <div v-else id="have" style="width: 350px;text-align: left">
-                    <div id="detail" style="font-family: 'Microsoft YaHei UI Light'">
-                      <h3>樊莲果</h3><h4 id="default">默认地址</h4>
-                      <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
-                      <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
-                      <div id="opertion">
-                        <span>编辑</span><span>删除</span>
+                  <div v-else id="have" style="width: 370px;text-align: left">
+                    <div id="daddy">
+                      <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
+                        <h3>樊莲果</h3><h4 id="default">默认地址</h4>
+                        <span style="display: block;margin-top: -40px">手机:18670488561</span><br>
+                        <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
+                        <div class="opertion">
+                          <span>编辑</span><span>删除</span>
+                        </div>
+                      </div>
+                      <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
+                        <h3>樊莲果</h3>
+                        <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
+                        <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
+                        <div class="opertion">
+                          <span>编辑</span><span>删除</span>
+                        </div>
+                      </div>
+                      <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
+                        <h3>樊莲果</h3>
+                        <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
+                        <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
+                        <div class="opertion">
+                          <span>编辑</span><span>删除</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -394,37 +412,50 @@ export default {
   margin-top: 34px;
 }
 #have{
-  background-color: rgba(0,0,0,.1);
   position: relative;
   margin-left: 100px;
   margin-top: 25px;
   border-radius: 10px;
-  padding-left: 10px;
-  padding-top: 2px;
-  padding-bottom: 10px;
+  /*padding-left: 10px;*/
+  /*padding-top: 2px;*/
+  /*padding-bottom: 10px;*/
 }
-#opertion{
+.opertion{
   margin-top: 15px;
 }
-#opertion>span{
+.opertion>span{
+  text-align: center;
   display: inline-block;
   color: deepskyblue;
 }
-#opertion>span:nth-last-child(1){
+.opertion>span:nth-last-child(1){
   margin-left: 10px;
 }
 #default{
-  position: absolute;
-  right: 10px;
+  position: relative;
+  right: -230px;
   font-size: 12px;
   padding: 1px;
   width: 100px;
   text-align: center;
   border-radius: 10px;
   border: 2px solid darkkhaki;
-  top: 5px;
+  top: -40px;
 }
 #inner>span{
   display: inline-block;
+}
+#daddy{
+  width: 360px;
+  /*background-color: salmon;*/
+  overflow: auto;
+  height:300px;
+}
+.detail{
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  background-color: #e3e4e4;
+  margin-top: 25px;
 }
 </style>
