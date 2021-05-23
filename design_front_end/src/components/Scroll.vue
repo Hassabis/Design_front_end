@@ -2,11 +2,11 @@
   <div>
     <full-page :options="options" id="fullpage" ref="fullpage">
       <div class="section">
-        <h3>vue-fullpage.js</h3>
+        <h3><video :src="require('@/../static/video/718_comfortable.mp4')" loop autoplay muted></video></h3>
       </div>
       <div class="section">
         <div class="slide">
-          <h3>Slide 2.1</h3>
+          <h3><video :src="require('@/../static/video/718_comfortable.mp4')" loop autoplay muted></video></h3>
         </div>
         <div class="slide">
           <h3>Slide 2.2</h3>
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="section">
-        <h3>Section 3</h3>
+        <h3><video :src="require('@/../static/video/718_comfortable.mp4')" loop autoplay muted></video></h3>
       </div>
     </full-page>
   </div>

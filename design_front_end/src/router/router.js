@@ -11,6 +11,7 @@ const fotter =()=> import("../components/fotter_v")
 const Mini = () => import("../components/MiniFotter")
 const scroll =()=> import("../components/Scroll")
 const Te =()=> import("../components/Te")
+const user =()=> import("../views/User/UserCenter")
 import Learn from "../components/Learn";
 Vue.use(Router)
 export default new Router({
@@ -22,7 +23,7 @@ export default new Router({
     },
     {
       path:"/test",
-      component:Te
+      component:user
     },
     {
       // 主页
@@ -35,6 +36,12 @@ export default new Router({
       path:'/login',
       name:'login',
       component:login
+    },
+    {
+      //汽车详情页
+      path:'/detail',
+      name:"CarDetail",
+      component:Te
     }
   ],
   mode:"history"

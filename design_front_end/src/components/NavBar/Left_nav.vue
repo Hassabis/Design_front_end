@@ -77,7 +77,7 @@ export default {
       },1000)
     },
     Go_detail(){
-      this.$router.push("/test")
+      this.$router.replace("/detail")
     }
   }
 }

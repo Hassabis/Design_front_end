@@ -82,6 +82,9 @@ export default {
   methods:{
     Go_Login(){
       this.$router.replace('/login')
+      setTimeout(()=>{
+        location.reload();
+      },10)
     },
   }
 }
@@ -121,6 +124,7 @@ export default {
 #logo{
   position: relative;
   top: 78px;
+  right: 20px;
   float: right;
 }
 #buttom{

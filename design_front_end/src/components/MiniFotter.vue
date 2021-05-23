@@ -1,13 +1,19 @@
 <template>
 <div id="root">
-  <div id="content">
-    <ul>
-      <li v-for="item in message">{{item}}</li>
-    </ul>
-    <div id="tips">
+  <div id="left">
+    <span>隐私条款</span>
+    <span>用户协议</span>
+    <span>投诉电话</span>
+    <span>网站地图</span>
+    <span>法律声明</span>
+    <span>环保信息查询</span>
+    <span>供应商平台</span>
+    <br>
+    <div class="bot_01" :style="{left:Cleft}">
       <span>©Porsche版权所有</span>
-      <span>京ICP备09012434号</span>
-      <span id="spc"><img id="police" :src="require('@/../static/img/Common/Police.png')" alt="">京公安备案 1231331323号</span>
+      <span>京ICP备 1314520号</span>
+      <span id="spc"><img id="police" :src="require('@/../static/img/Common/Police.png')" alt="">京公安备案 13145209999号</span>
+      <nav>孤鸿踏雪，似我</nav>
     </div>
   </div>
   <div id="right">
@@ -25,33 +31,40 @@
 <script>
 export default {
   name: "MiniFotter",
-  data(){
-    return{
-      message:[
-          "隐私条款",
-          "用户协议",
-          "投诉电话",
-          "网站地图",
-          "法律声明",
-          "环保信息查询",
-          "供应商平台"
-      ]
+  props:{
+    Cleft:{
+      type:String,
+      require:false
     }
   }
 }
 </script>
 
 <style scoped>
+nav{
+  color: darkgoldenrod;
+  position: absolute;
+  bottom: 0;
+  left: 469px;
+}
 #root{
   position: relative;
   height: 100px;
   width: 99vw;
   /*background-color: salmon;*/
   border-top: 1px solid #e3e4e4;
+  /*background-color: salmon;*/
+}
+#left{
+  font-size: 12px;
+  position: absolute;
+  left: 30px;
+  top: 22px;
 }
 ul{
   position: relative;
   left: -15px;
+  top: -10px;
 }
 ul,li{
   display: inline-block;
@@ -62,11 +75,21 @@ li{
   margin-left: 25px;
   /*border-left: solid 1px #e3e4e4;*/
 }
-#tips{
-  font-size: 12px;
+#left>span{
+  margin-left: 35px;
+}
+.bot_01{
+  width: 800px;
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 4px;
+  /*font-size: 12px;*/
   position: absolute;
-  left: 15px;
-  margin-top: 5px;
+  /*left: -180px;*/
+  /*margin-top: 2px;*/
+}
+.bot_01>span{
+  margin-left: 30px;
 }
 #tips>span{
   margin-left: 30px;

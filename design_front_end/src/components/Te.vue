@@ -21,7 +21,7 @@
                 <span class="des">{{item.secondes}}</span>
               </div>
               <div>
-                <span>{{item.speeddes}}</span><br>
+                <span>{{item.speed}}</span><br>
                 <span class="des">{{ item.speeddes }}</span>
               </div>
               <div class="but">
@@ -40,9 +40,11 @@
         </div>
       </div>
       <div class="section">
-        <h3>
-          <video :src="require('@/../static/video/718.mp4')" loop autoplay muted></video>
-        </h3>
+<!--        <h3>-->
+        <div class="video">
+          <video :src="require('@/../static/video/718.mp4')" loop autoplay muted height="750px"></video>
+        </div>
+<!--        </h3>-->
         <div id="main">
           <h2 id="title">
             设计
@@ -54,8 +56,11 @@
         </div>
       </div>
       <div class="section">
-        <h3>
-          <video :src="require('@/../static/video/718_comfortable.mp4')" loop autoplay muted></video></h3>
+<!--        <h3>-->
+        <div class="video">
+          <video :src="require('@/../static/video/718_comfortable.mp4')" loop autoplay muted height="750px"></video>
+<!--        </h3>-->
+        </div>
         <div class="main_02">
           <h2 class="title_02">
             舒适性
@@ -67,8 +72,9 @@
         </div>
       </div>
       <div class="section">
-        <h3>
-          <video :src="require('@/../static/video/718_farway.mp4')" loop autoplay muted></video></h3>
+<!--        <h3>-->
+        <div class="video">
+          <video :src="require('@/../static/video/718_farway.mp4')" loop autoplay muted height="750px" width="1400px"></video></div>
         <div class="main_03">
           <h2 class="title_03">
             718 T
@@ -80,8 +86,9 @@
         </div>
       </div>
       <div class="section">
-        <h3>
-          <img :src="require('@/../static/img/Car_img/718_show.webp')" alt=""></h3>
+<!--        <h3>-->
+        <div class="video">
+          <img id="male" :src="require('@/../static/img/Car_img/porsche-normal_spc.webp')" alt="" style="height: 750px"></div>
         <div class="main_04">
           <h2 class="title_04">
             718 GTS
@@ -93,6 +100,7 @@
         </div>
       </div>
       <div class="section">
+        <div>
         <h1>诗和远方，本该属于我们</h1>
         <div class="accordion">
           <!-- 在这里我们需要复制5个一样的代码，并修改内容 -->
@@ -164,15 +172,21 @@
           By <a href="javascript:;">Porsche</a>
         </p>
       </div>
+        <div id="our">
+          <MiniFotter :cleft="-180+'px'"></MiniFotter>
+        </div>
+      </div>
     </full-page>
   </div>
 </template>
 
 <script>
-// import { VueExtend } from 'godspen-lib';
+import MiniFotter from "../components/MiniFotter";
 import $ from "jquery"
 export default {
-  // mixins: [VueExtend.mixin],
+  beforeDestroy() {
+    $.fn.fullpage.destroy('all');
+  },
   name: 'VueFullPage',
   label: process.env.LABEL,
   style: process.env.STYLE,
@@ -181,7 +195,7 @@ export default {
       options: {
         licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
         afterLoad: this.afterLoad,
-        // navigation: true,
+        navigation: true,
         // anchors: ['page1', 'page2', 'page3','page4'],
         navigationPosition: 'left', //导航小圆点的位置
         controlArrows: true,
@@ -291,20 +305,20 @@ export default {
       console.log('After load....');
       console.log(destination);
       if (destination.index === 0){
-        this.$refs.fullpage.init();
+        // this.$refs.fullpage.init();
       }
       if (destination.index === 1){
 
         this.dis()
         $('video').get(parseInt(destination.index - 1)).play()
-        this.$refs.fullpage.init();
+        // this.$refs.fullpage.init();
 
       }else if (destination.index === 2){
 
         this.dis_02()
         $('video').get(parseInt(destination.index - 1)).play()
         console.log("第三页")
-        this.$refs.fullpage.init();
+        // this.$refs.fullpage.init();
 
       }else if (destination.index === 3){
 
@@ -313,10 +327,10 @@ export default {
         this.$refs.fullpage.init();
 
       }else if (destination.index === 4){
-
         this.dis_04()
         this.$refs.fullpage.init();
-
+      }else if (destination.index === 5){
+        this.$refs.fullpage.init();
       }
     },
     dis(){
@@ -339,6 +353,9 @@ export default {
         $(".main_04").show("slow")
       },800)
     }
+  },
+  components:{
+    MiniFotter
   }
 };
 </script>
@@ -346,4 +363,23 @@ export default {
 <style scoped>
 @import "../../static/css/Detail/style.css";
 @import "../../static/css/Detail/bottom.css";
+/*img{*/
+/*  width:100%; height:100%;*/
+/*}*/
+.video{
+  width: 1550px;
+  height: 750px;
+}
+video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#our{
+  z-index: 1111;
+  margin: 10px auto;
+  /*margin-top:0px;*/
+  /*margin-top: -130px;*/
+  bottom: 10px;
+}
 </style>

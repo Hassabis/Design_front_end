@@ -122,8 +122,9 @@ export default {
   top: -40px;
 }
 .floatBox{
-  position: absolute;
-  top: 980px;
+  position:relative;
+  top: -150px;
+  left: -100px;
   z-index: 10;
 }
 #pomes{
