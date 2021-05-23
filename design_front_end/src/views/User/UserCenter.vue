@@ -55,6 +55,11 @@
                         <span class="guo">学生</span>
                       </span>
                     </div>
+                    <article>
+                      <div id="motto">
+                        <span>MOTTO：如果要飞得高，就该把地平线忘掉；既然非要有人成功，那个人为什么不能是你？</span>
+                      </div>
+                    </article>
                   </div>
                 </el-tab-pane>
                 <el-tab-pane>
@@ -256,5 +261,9 @@ export default {
 .guo{
   display: inline-block;
   margin-top: 10px;
+}
+#motto{
+  font-family: "Microsoft YaHei UI Light";
+  margin-top: 70px;
 }
 </style>
