@@ -128,6 +128,9 @@ export default {
   right: 20px;
   float: right;
 }
+#logo:hover{
+  cursor: pointer;
+}
 #buttom{
   margin: 40px auto;
   margin-left: 30px;

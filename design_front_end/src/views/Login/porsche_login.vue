@@ -16,17 +16,20 @@
           </form>
         </div>
       </div>
-
       <!-- 注册 -->
 
       <div class="user singupBx">
         <div class="formBx">
           <form action="">
             <h2>注册</h2>
-            <input type="text" name="" placeholder="用户名">
-            <input type="email" name="" placeholder="邮箱地址">
-            <input type="password" name="" placeholder="密码">
-            <input type="password" name="" placeholder="再次输入密码">
+            <input type="text" name="" placeholder="用户名" v-model="username" @blur="check_username">
+            <span id="tipname" v-show="error_name" >用户名长度应在5-15个字符间</span>
+            <input type="email" name="" placeholder="邮箱地址" v-model="email" @blur="check_email">
+            <span id="email" v-show="email_check">邮箱格式有误</span>
+            <input type="password" name="" placeholder="密码" v-model="password" @blur="check_pwdlen">
+            <span id="tippwd" v-show="pwdlength">密码长度应在8位到12位之间</span>
+            <input type="password" name="" placeholder="再次输入密码" v-model="password2" @blur="check_cpwd">
+            <span id="confirm" v-show="error_check_password">{{ passmessage }}</span>
             <input type="submit" name="" value="注册">
             <p class="signup">已有账号？<a href="javascript:;" @click="topggleForm">登录</a></p>
           </form>
@@ -44,11 +47,46 @@ import "./spc/main"
 import "./spc/particles"
 export default {
   name: "porsche_login",
+  data(){
+    return{
+      error_name:false,
+      username:'',
+      password: '',
+      password2: '',
+      passmessage:'',
+      email:'',
+      error_check_password : false,
+      pwdlength:false,
+      email_check:false
+    }
+  },
   methods:{
     topggleForm(){
       let container = document.querySelector('.container');
       container.classList.toggle('active');
     },
+    check_username(){
+      //用户名是5-15个字符 [a-zA-Z0-9_-]
+      //定义正则
+      let re = /^[a-zA-Z0-9_-]{5,15}$/;
+      this.error_name = !re.test(this.username);
+    },
+    check_cpwd(){
+      //验证两次密码是否一致
+      if (this.password2 !== this.password){
+        this.error_check_password = true;
+        this.passmessage = "粗心死了，两次密码都不一样！"
+      }else {
+        this.error_check_password = false;
+      }
+    },
+    check_pwdlen(){
+      this.pwdlength = this.password.length < 8 || this.password.length > 12;
+    },
+    check_email(){
+      let re = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+      this.email_check = !re.test(this.email);
+    }
   },
 }
 </script>
@@ -87,6 +125,7 @@ section {
 }
 
 section .container {
+  border-radius: 10px;
   position: relative;
   width: 800px;
   height: 500px;
@@ -249,5 +288,34 @@ section .container.active .singinBx .imgBx {
   section .container .user .formBx {
     width: 0;
   }
+}
+#tipname{
+  /*background: salmon;*/
+  color: red;
+  position: absolute;
+  font-size: 14px;
+  top: 155px;
+  left: 50px;
+}
+#tippwd{
+  color: red;
+  position: absolute;
+  font-size: 14px;
+  top: 265px;
+  left: 50px;
+}
+#confirm{
+  color: red;
+  position: absolute;
+  font-size: 14px;
+  top: 317px;
+  left: 50px;
+}
+#email{
+  color: red;
+  position: absolute;
+  font-size: 14px;
+  top:211px;
+  left: 50px;
 }
 </style>
