@@ -81,10 +81,11 @@ export default {
   },
   methods:{
     Go_Login(){
-      this.$router.replace('/profile')
-      setTimeout(()=>{
-        location.reload();
-      },10)
+      // this.$router.replace('/login')
+      location.href = '/login'
+      // setTimeout(()=>{
+      //   location.reload();
+      // },10)
     },
   }
 }

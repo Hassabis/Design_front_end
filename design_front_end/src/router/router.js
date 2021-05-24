@@ -12,6 +12,7 @@ const Mini = () => import("../components/MiniFotter")
 const scroll =()=> import("../components/Scroll")
 const Te =()=> import("../components/Te")
 const user =()=> import("../views/User/UserCenter")
+const porschelogin =()=> import("../views/Login/porsche_login")
 import Learn from "../components/Learn";
 Vue.use(Router)
 export default new Router({
@@ -23,7 +24,7 @@ export default new Router({
     },
     {
       path:"/test",
-      component:user
+      component:porschelogin
     },
     {
       // 主页
@@ -35,7 +36,7 @@ export default new Router({
       // 登录页面
       path:'/login',
       name:'login',
-      component:login
+      component:porschelogin
     },
     {
       //汽车详情页

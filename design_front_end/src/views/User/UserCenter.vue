@@ -58,7 +58,7 @@
                             </el-form-item>
                           <div class="demo-drawer__footer">
                             <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
-                            <el-button @click="cancelForm">取 消</el-button>
+                            <el-button @click="cancelForm">不改了不改了</el-button>
                           </div>
                           </el-form>
                         </div>
@@ -244,10 +244,6 @@ export default {
           })
           .catch(_ => {});
       console.log(this.value2)
-    },
-    onSubmit() {
-      console.log('submit!');
-      $(".el-dialog__close").click();
     },
     cancelForm() {
       this.loading = false;
