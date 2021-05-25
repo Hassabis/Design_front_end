@@ -9,9 +9,11 @@
         <div class="formBx">
           <form action="">
             <h2>登录</h2>
-            <input type="text" name="" placeholder="用户名">
-            <input type="password" name="" placeholder="密码">
-            <input type="submit" name="" value="登录">
+            <input type="text" name="" v-model="username" placeholder="用户名">
+            <input type="password" name="" v-model="password" placeholder="密码">
+            <span id="login_tips" v-show="err_show">用户名或密码不能为空</span>
+<!--            <input type="submit" name="" value="登录">-->
+            <div id="login" @click="login">登录</div>
             <p class="signup">没有账号？<a href="javascript:;" @click="topggleForm">注册</a></p>
           </form>
         </div>
@@ -20,17 +22,17 @@
 
       <div class="user singupBx">
         <div class="formBx">
-          <form action="">
+          <form>
             <h2>注册</h2>
-            <input type="text" name="" placeholder="用户名" v-model="username" @blur="check_username">
-            <span id="tipname" v-show="error_name" >用户名长度应在5-15个字符间</span>
-            <input type="email" name="" placeholder="邮箱地址" v-model="email" @blur="check_email">
+            <input type="text" name="username" placeholder="用户名" v-model="username" @blur="check_username">
+            <span id="tipname" v-show="error_name" >用户名长度应在2-8个字符间</span>
+            <input type="email" name="email" placeholder="邮箱地址" v-model="email" @blur="check_email">
             <span id="email" v-show="email_check">邮箱格式有误</span>
-            <input type="password" name="" placeholder="密码" v-model="password" @blur="check_pwdlen">
+            <input type="password" name="password" placeholder="密码" v-model="password" @blur="check_pwdlen">
             <span id="tippwd" v-show="pwdlength">密码长度应在8位到12位之间</span>
-            <input type="password" name="" placeholder="再次输入密码" v-model="password2" @blur="check_cpwd">
+            <input type="password" name="password2" placeholder="再次输入密码" v-model="password2" @blur="check_cpwd">
             <span id="confirm" v-show="error_check_password">{{ passmessage }}</span>
-            <input type="submit" name="" value="注册">
+            <div @click="register" id="register">注册</div>
             <p class="signup">已有账号？<a href="javascript:;" @click="topggleForm">登录</a></p>
           </form>
         </div>
@@ -45,7 +47,9 @@
 <script>
 import "./spc/main"
 import "./spc/particles"
+import axios from "axios"
 export default {
+
   name: "porsche_login",
   data(){
     return{
@@ -57,19 +61,66 @@ export default {
       email:'',
       error_check_password : false,
       pwdlength:false,
-      email_check:false
+      email_check:false,
+      register_suc:'',
+      err_msg:'',
+      err_show:false
     }
   },
   methods:{
+    login(){
+      if (this.username === '' || this.password === ''){
+        this.err_msg = "用户名或密码不能为空"
+        this.err_show = true
+        return;
+      }
+      axios.post('http://127.0.0.1:8000/login/',{
+        username:this.username,
+        password:this.password
+      })
+      .then(response=>{
+
+        sessionStorage.clear();
+        localStorage.clear();
+        // localStorage.token = response.data.token;
+        // localStorage.username = response.data.username;
+        // localStorage.user_id = response.data.id;
+        sessionStorage.token = response.data.token;
+        sessionStorage.username = response.data.username;
+        sessionStorage.user_id = response.data.id;
+        this.$router.push('/index')
+      })
+      .catch(err=>{
+        this.err_show = true;
+      })
+    },
+    register(){
+      console.log("储存")
+      axios.post('http://127.0.0.1:8000/register/',{
+        username:this.username,
+        password:this.password,
+        password2:this.password2,
+        email:this.email
+      })
+      .then(response =>{
+        if (response.data.msg === "success"){
+          this.register_suc = response.data.msg
+          location.reload();
+        }
+      })
+      .catch(err=>{
+        console.log("失败，暂且不处理")
+      })
+    },
     topggleForm(){
       let container = document.querySelector('.container');
       container.classList.toggle('active');
     },
     check_username(){
-      //用户名是5-15个字符 [a-zA-Z0-9_-]
-      //定义正则
-      let re = /^[a-zA-Z0-9_-]{5,15}$/;
-      this.error_name = !re.test(this.username);
+      //用户名是2-8个字符 [a-zA-Z0-9_-]
+      this.error_name = this.username.length < 2 || this.username.length > 8;
+      // let re = /^[a-zA-Z0-9_-]{2,8}$/;
+      // this.error_name = !re.test(this.username);
     },
     check_cpwd(){
       //验证两次密码是否一致
@@ -92,7 +143,28 @@ export default {
 </script>
 
 <style scoped>
-
+#register{
+  margin-top: 10px;
+  background-color: #677eff;
+  height: 40px;
+  width: 100px;
+  line-height: 40px;
+  text-align: center;
+}
+#login{
+  margin-top: 10px;
+  background-color: #677eff;
+  height: 40px;
+  width: 100px;
+  line-height: 40px;
+  text-align: center;
+}
+#login:hover{
+  cursor: pointer;
+}
+#register:hover{
+  cursor: pointer;
+}
 h1 {
   text-align: center;
 }
@@ -317,5 +389,12 @@ section .container.active .singinBx .imgBx {
   font-size: 14px;
   top:211px;
   left: 50px;
+}
+#login_tips{
+  color: red;
+  position: absolute;
+  font-size: 14px;
+  top: 265px;
+  left: 45px;
 }
 </style>

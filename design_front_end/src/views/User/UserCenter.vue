@@ -9,7 +9,7 @@
       <div id="main">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="用户管理" name="first">
-            <sapn class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，樊莲果：</sapn>
+            <sapn class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，{{ username }}：</sapn>
             <div id="userchoose">
               <el-tabs type="card" :tab-position="tabPosition">
                 <el-tab-pane>
@@ -67,7 +67,7 @@
                     <div id="message">
                       <span class="message">
                         姓名 <br>
-                        <span class="guo">樊莲果</span>
+                        <span class="guo">{{ username }}</span>
                       </span>
                       <span class="message">
                         性别 <br>
@@ -153,7 +153,7 @@
           </el-tab-pane>
         </el-tabs>
         <div id="user">
-          欢迎您：樊莲果女士
+          欢迎您：{{username}}
         </div>
       </div>
     </el-main>
@@ -168,9 +168,18 @@
 import MiniFotter from "../../components/MiniFotter";
 import $ from "jquery"
 export default {
+  mounted() {
+    let username = sessionStorage.username;
+    if (username === undefined){
+      location.href = '/login';
+      return;
+    }
+    this.username = username
+  },
   name: "UserCenter",
   data() {
     return {
+      username:'',
       dialog:false,
       timer: null,
       loading:false,
