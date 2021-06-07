@@ -71,16 +71,16 @@
                       </span>
                       <span class="message">
                         性别 <br>
-                        <span class="guo">女</span>
+                        <span class="guo">{{ gender }}</span>
                       </span><br>
                       <span class="message">
                         生日 <br>
 <!--                        <span class="guo">{{value2.getFullYear()+'-'+ (value2.getMonth() + 1) +'-'+ value2.getDate() }}</span>-->
-                        <span class="guo">2001-02-11</span>
+                        <span class="guo">{{ birthday }}</span>
                       </span>
-                      <span class="message">
+                      <span class="message" id="guoguo">
                         职业 <br>
-                        <span class="guo">学生</span>
+                        <span class="guo" id="guo">{{ profession }}</span>
                       </span>
                     </div>
                     <article>
@@ -107,7 +107,7 @@
                   <div v-else id="have" style="width: 370px;text-align: left">
                     <div id="daddy">
                       <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
-                        <h3>樊莲果</h3><h4 id="default">默认地址</h4>
+                        <h3>{{ username }}</h3><h4 id="default">默认地址</h4>
                         <span style="display: block;margin-top: -40px">手机:18670488561</span><br>
                         <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
                         <div class="opertion">
@@ -115,7 +115,7 @@
                         </div>
                       </div>
                       <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
-                        <h3>樊莲果</h3>
+                        <h3>{{ username }}</h3>
                         <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
                         <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
                         <div class="opertion">
@@ -123,7 +123,7 @@
                         </div>
                       </div>
                       <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
-                        <h3>樊莲果</h3>
+                        <h3>{{ username }}</h3>
                         <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
                         <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
                         <div class="opertion">
@@ -170,15 +170,27 @@ import $ from "jquery"
 export default {
   mounted() {
     let username = sessionStorage.username;
+    let birthday = sessionStorage.birthday
+    let profession = sessionStorage.profession
     if (username === undefined){
       location.href = '/login';
       return;
     }
+    if (sessionStorage.gender){
+      this.gender = "男"
+    }else {
+      this.gender = "女"
+    }
     this.username = username
+    this.birthday = birthday
+    this.profession = profession
   },
   name: "UserCenter",
   data() {
     return {
+      gender:'',
+      profession:'',
+      birthday:'',
       username:'',
       dialog:false,
       timer: null,
@@ -451,5 +463,12 @@ export default {
 }
 .demo-drawer__footer{
   margin-left: 81px;
+}
+#guoguo{
+  position: relative;
+  left: -10px;
+}
+#guo{
+  width: 200px;
 }
 </style>

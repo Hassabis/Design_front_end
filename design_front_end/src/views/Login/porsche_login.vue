@@ -11,7 +11,7 @@
             <h2>登录</h2>
             <input type="text" name="" v-model="username" placeholder="用户名">
             <input type="password" name="" v-model="password" placeholder="密码">
-            <span id="login_tips" v-show="err_show">用户名或密码不能为空</span>
+            <span id="login_tips" v-show="err_show">{{ err_msg }}</span>
 <!--            <input type="submit" name="" value="登录">-->
             <div id="login" @click="login">登录</div>
             <p class="signup">没有账号？<a href="javascript:;" @click="topggleForm">注册</a></p>
@@ -25,7 +25,7 @@
           <form>
             <h2>注册</h2>
             <input type="text" name="username" placeholder="用户名" v-model="username" @blur="check_username">
-            <span id="tipname" v-show="error_name" >用户名长度应在2-8个字符间</span>
+            <span id="tipname" v-show="error_name" >{{name_err}}</span>
             <input type="email" name="email" placeholder="邮箱地址" v-model="email" @blur="check_email">
             <span id="email" v-show="email_check">邮箱格式有误</span>
             <input type="password" name="password" placeholder="密码" v-model="password" @blur="check_pwdlen">
@@ -53,6 +53,7 @@ export default {
   name: "porsche_login",
   data(){
     return{
+      name_err:'',
       error_name:false,
       username:'',
       password: '',
@@ -79,7 +80,6 @@ export default {
         password:this.password
       })
       .then(response=>{
-
         sessionStorage.clear();
         localStorage.clear();
         // localStorage.token = response.data.token;
@@ -88,11 +88,19 @@ export default {
         sessionStorage.token = response.data.token;
         sessionStorage.username = response.data.username;
         sessionStorage.user_id = response.data.id;
+        sessionStorage.birthday = response.data.birthday
+        sessionStorage.profession = response.data.profession
+        sessionStorage.gender = response.data.gender
         this.$router.push('/index')
       })
       .catch(err=>{
+        // alert("账号或密码错误")
+        this.err_msg = "用户名或密码错误"
         this.err_show = true;
       })
+    },
+    changetips(){
+      this.err_msg = "用户名或密码错误"
     },
     register(){
       console.log("储存")
@@ -116,9 +124,17 @@ export default {
       let container = document.querySelector('.container');
       container.classList.toggle('active');
     },
-    check_username(){
+    check_username: function () {
       //用户名是2-8个字符 [a-zA-Z0-9_-]
+      this.name_err = "用户名长度应在2-8个字符间"
       this.error_name = this.username.length < 2 || this.username.length > 8;
+      let url = "http://127.0.0.1:8000/register/?username=" + this.username
+      axios.get(url).then(response => {
+        if (response.data.count === 1) {
+          this.name_err = "该用户名已存在"
+          this.error_name = true;
+        }
+      })
       // let re = /^[a-zA-Z0-9_-]{2,8}$/;
       // this.error_name = !re.test(this.username);
     },
