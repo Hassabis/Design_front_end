@@ -99,9 +99,6 @@ export default {
         this.err_show = true;
       })
     },
-    changetips(){
-      this.err_msg = "用户名或密码错误"
-    },
     register(){
       console.log("储存")
       axios.post('http://127.0.0.1:8000/register/',{
@@ -117,7 +114,7 @@ export default {
         }
       })
       .catch(err=>{
-        console.log("失败，暂且不处理")
+        alert("注册失败!")
       })
     },
     topggleForm(){
@@ -131,7 +128,7 @@ export default {
       let url = "http://127.0.0.1:8000/register/?username=" + this.username
       axios.get(url).then(response => {
         if (response.data.count === 1) {
-          this.name_err = "该用户名已存在"
+          this.name_err = response.data.errmsg
           this.error_name = true;
         }
       })

@@ -91,10 +91,6 @@
                   </div>
                 </el-tab-pane>
                 <el-tab-pane>
-                  <span slot="label"><i class="el-icon-chat-dot-round"></i> 消息中心</span>
-                  消息中心
-                </el-tab-pane>
-                <el-tab-pane>
                   <span slot="label">
                     <i class="el-icon-magic-stick"></i> 收货地址
                   </span>
@@ -137,19 +133,22 @@
                   <span slot="label">
                     <i class="el-icon-star-off"></i> 我的收藏
                   </span>
-
+                  <div v-if="collect.length === 1" id="collection">
+                    <span id="collect">尚未添加任何收藏</span>
+                    <span id="gotocollection">请您前往汽车页面，添加爱车至我的收藏后查看。</span>
+                  </div>
                 </el-tab-pane>
               </el-tabs>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="配置管理" name="second">
-            <span class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，樊莲果：</span>
+          <el-tab-pane label="我的订单" name="second">
+            <span class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，{{username}}：</span>
           </el-tab-pane>
-          <el-tab-pane label="角色管理" name="third">
-            <span class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，樊莲果：</span>
+          <el-tab-pane label="我的车辆" name="third">
+            <span class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，{{ username }}：</span>
           </el-tab-pane>
           <el-tab-pane label="定时任务补偿" name="fourth">
-            <span class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，樊莲果：</span>
+            <span class="userdesc" style="font-family: 'Microsoft YaHei UI Light'">您好，{{ username }}：</span>
           </el-tab-pane>
         </el-tabs>
         <div id="user">
@@ -203,6 +202,12 @@ export default {
       adderss:[
         {
           name:"崽崽"
+        }
+      ],
+      collect:[
+        {
+          carname:"Porsche 911",
+          price:"65,0000"
         }
       ],
       pickerOptions: {
@@ -470,5 +475,21 @@ export default {
 }
 #guo{
   width: 200px;
+}
+#collection{
+  margin-left: 100px;
+  margin-top: 3px;
+}
+#collect{
+  display: block;
+  font-family: "Microsoft YaHei UI Light";
+  font-size: 28px;
+}
+#gotocollection{
+  display: block;
+  margin-top: 20px;
+  user-select: none;
+  font-family: "Microsoft YaHei UI Light";
+  font-size: 18px;
 }
 </style>
