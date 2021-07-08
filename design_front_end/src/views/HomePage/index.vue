@@ -19,11 +19,9 @@
       <el-main>
         <el-carousel height="564px">
           <el-carousel-item v-for="item in img_box" :key="item">
-            <h3 class="small"><img :src="item" alt=""></h3>
+            <h3 class="small"><img :src="item.imageurl" alt=""></h3>
           </el-carousel-item>
         </el-carousel>
-        <!--        <div style="position: absolute">-->
-        <!--        </div>-->
       </el-main>
       <div id="nav_01">
         <navleft :Cheight="height"></navleft>
@@ -57,19 +55,24 @@ import Search from "../../components/NavBar/Search";
 import fotter_v from "../../components/fotter_v";
 import MiniFotter from "../../components/MiniFotter";
 import $ from "jquery"
+import axios from "axios";
 export default {
   name: "index",
   data(){
     return{
-      img_box:[
-          require("@/../static/img/Car_img/porsche-normal.webp"),
-          require("@/../static/img/Car_img/porsche-normal_02.webp"),
-          require("@/../static/img/Car_img/porsche-normal_03.webp"),
-          require("@/../static/img/Car_img/porsche-normal_04.webp")
-      ],
+      img_box:"",
       height:'94px',
       width:"1400px"
     }
+  },
+  mounted() {
+    // axios.get(this.API.API_GET_INDEX_IMAGE).then(res => {
+    axios.get(this.API.API_GET_INDEX_IMAGE).then(res => {
+      this.img_box = res.data
+      console.log(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
   },
   components:{
     navleft,
