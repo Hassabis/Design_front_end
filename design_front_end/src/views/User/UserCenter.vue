@@ -28,7 +28,7 @@
                     </div>
                     <div id="basicmessage">
                       基本信息
-                      <span id="edit" style="float: right;color: deepskyblue" @click="dialog = true" type="primary">编辑</span>
+                      <span id="edit" style="float: right;color: deepskyblue" @click="dialog = true" type="primary"><i class="el-icon-s-tools">编辑</i></span>
                       <el-drawer
                           title="个人基本信息修改"
                           :before-close="handleClose"
@@ -74,20 +74,15 @@
                         <span class="guo">{{ gender }}</span>
                       </span><br>
                       <span class="message">
-                        生日 <br>
-<!--                        <span class="guo">{{value2.getFullYear()+'-'+ (value2.getMonth() + 1) +'-'+ value2.getDate() }}</span>-->
+                        生日<br>
                         <span class="guo">{{ birthday }}</span>
                       </span>
                       <span class="message" id="guoguo">
                         职业 <br>
                         <span class="guo" id="guo">{{ profession }}</span>
+<!--                        <span class="guo" id="guo"></span>-->
                       </span>
                     </div>
-                    <article>
-                      <div id="motto">
-                        <span>MOTTO：如果要飞得高，就该把地平线忘掉；既然非要有人成功，那个人为什么不能是你？</span>
-                      </div>
-                    </article>
                   </div>
                 </el-tab-pane>
                 <el-tab-pane>
@@ -381,6 +376,7 @@ export default {
 #message{
   margin-top: 5px;
   font-family: "Microsoft YaHei UI Light";
+  height: 300px;
 }
 #message>span{
   display: inline-block;
@@ -394,6 +390,8 @@ export default {
 }
 #message>span:nth-child(3){
   margin-left: 30px;
+  position: relative;
+
 }
 #message>span:nth-last-child(1){
   margin-left: 375px;
@@ -470,11 +468,15 @@ export default {
   margin-left: 81px;
 }
 #guoguo{
-  position: relative;
-  left: -10px;
+  position: absolute;
+  left: 160px;
+  top: 260px;
 }
 #guo{
   width: 200px;
+  position: absolute;
+  top: 10px;
+  margin-top: 17px;
 }
 #collection{
   margin-left: 100px;

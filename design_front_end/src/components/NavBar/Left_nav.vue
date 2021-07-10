@@ -30,7 +30,7 @@
     </div>
     <div id="CarType">
       <ul v-for="i in littlecar">
-        <li @click="Go_detail" @mouseenter="getThird(i.id)">{{i.little}}</li>
+        <li @click="Go_detail(i.detailsign)" @mouseenter="getThird(i.id)">{{i.little}}</li>
       </ul>
     </div>
   </div>
@@ -99,8 +99,16 @@ export default {
         $("#spec").fadeIn("slow");
       },1000)
     },
-    Go_detail(){
-      this.$router.replace("/detail")
+    Go_detail(pk){
+      this.$store.commit("changCarTypeId",pk)
+      axios.get(this.API.API_GET_DETAILCAR + this.$store.state.CarTypeId + "/").then(res =>{
+        this.$store.commit("changeCarTDate",res.data)
+      })
+      setInterval(()=>{
+        if (this.$store.state.CarData.length > 0){
+          this.$router.replace("/detail")
+        }
+      },10)
     }
   }
 }

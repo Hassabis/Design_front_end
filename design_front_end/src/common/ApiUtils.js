@@ -8,5 +8,7 @@ export default {
     //二级分类
     API_GET_SECOND_CLASSIFICATION:serverBase + "/Secondclasscar/",
     //三级分类
-    API_GET_THIRD_CLASSIFICATION:serverBase + "/Thirdclasscar/"
+    API_GET_THIRD_CLASSIFICATION:serverBase + "/Thirdclasscar/",
+    //分类下所有车辆详情信息
+    API_GET_DETAILCAR:serverBase + "/detailCar/"
 }

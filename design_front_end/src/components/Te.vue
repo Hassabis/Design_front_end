@@ -2,37 +2,37 @@
   <div>
     <full-page :options="options" id="fullpage" ref="fullpage" v-cloak>
       <div class="section" :style="{backgroundImage:'url(' + bacimg +')'}">
-        <div class="slide" v-for="item in metadata">
+        <div class="slide" v-for="item in this.$store.state.CarData" v-cloak>
           <div class="meta">
-            <h2>{{item.name}}</h2>
-            <h4>{{ item.price }}</h4>
-            <img :src="item.path" alt="">
+            <h2 id="controlheader">{{item.carheader}}</h2>
+            <h4 id="price">{{ item.carprice }}*元起</h4>
+            <img :src="item.carmodel" alt="">
             <div class="waote">
               <div>
                 <span>
-                  {{item.power}}
+                  {{item.carpower}}
                 </span><br>
                 <span class="des">
-                  {{item.powerdes}}
+                  最大功率(kw)/最大功率(PS)
                 </span>
               </div>
               <div>
-                <span>{{item.second}}</span><br>
-                <span class="des">{{item.secondes}}</span>
+                <span>{{item.carspeeds}}s</span><br>
+                <span class="des">0 - 100km/h加速时间</span>
               </div>
               <div>
-                <span>{{item.speed}}</span><br>
-                <span class="des">{{ item.speeddes }}</span>
+                <span>{{item.cartime}} km/h</span><br>
+                <span class="des">最高时速</span>
               </div>
               <div class="but">
                 <div class="chi">
-                  {{ item.tecdata }}
+                  技术数据
                 </div>
                 <div class="chi">
-                  {{ item.carconfig }}
+                 车辆配置器
                 </div>
                 <div class="chi">
-                  {{ item.compare }}
+                  比较
                 </div>
               </div>
             </div>
@@ -103,7 +103,6 @@
         <div>
         <h1>诗和远方，本该属于我们</h1>
         <div class="accordion">
-          <!-- 在这里我们需要复制5个一样的代码，并修改内容 -->
           <ul>
             <li tabindex="1">
               <div>
@@ -169,7 +168,7 @@
           </ul>
         </div>
         <p class="about">
-          By <a href="javascript:;">Porsche</a>
+          By <a href="javascript:;" @click="GoIndex">Porsche</a>
         </p>
       </div>
         <div id="our">
@@ -183,6 +182,7 @@
 <script>
 import MiniFotter from "../components/MiniFotter";
 import $ from "jquery"
+import axios from "axios";
 export default {
   beforeDestroy() {
     $.fn.fullpage.destroy('all');
@@ -211,96 +211,15 @@ export default {
         verticalCentered: true,
       },
       bacimg:require("@/../static/img/CarBac/Bac_01.webp"),
-      metadata:[
-        {
-          name:"718 Cayman",
-          price:"545,000元起 *",
-          path:require('@/../static/img/Car_img/porsche-model_03.webp'),
-          power:"184kw/250PS",
-          powerdes:"最大功率(kw)/最大功率(PS)",
-          second:"5.6s",
-          secondes:"0 - 100km/h加速时间",
-          speed:"260km/h",
-          speeddes:"最高时速",
-          tecdata:"技术数据",
-          carconfig:"车辆配置器",
-          compare:"比较"
-        },
-        {
-          name:"718 Spyder",
-          price:"738,000元起 *",
-          path:require('@/../static/img/Car_img/porsche-model_01.webp'),
-          power:"230kw/300PS",
-          powerdes:"最大功率(kw)/最大功率(PS)",
-          second:"4.7s",
-          secondes:"0 - 100km/h加速时间",
-          speed:"270km/h",
-          speeddes:"最高时速",
-          tecdata:"技术数据",
-          carconfig:"车辆配置器",
-          compare:"比较"
-        },
-        {
-          name:"911 Carrera & Targa",
-          price:"1,278,000元起 *",
-          path:require('@/../static/img/Car_img/911_Carrera.webp'),
-          power:"283kw/385PS",
-          powerdes:"最大功率(kw)/最大功率(PS)",
-          second:"4,2s",
-          secondes:"0 - 100km/h加速时间",
-          speed:"293km/h",
-          speeddes:"最高时速",
-          tecdata:"技术数据",
-          carconfig:"车辆配置器",
-          compare:"比较"
-        },
-        {
-          name:"718 Cayman",
-          price:"545,000元起 *",
-          path:require('@/../static/img/Car_img/911_carrear4.webp'),
-          power:"184kw/250PS",
-          powerdes:"最大功率(kw)/最大功率(PS)",
-          second:"5.6s",
-          secondes:"0 - 100km/h加速时间",
-          speed:"260km/h",
-          speeddes:"最高时速",
-          tecdata:"技术数据",
-          carconfig:"车辆配置器",
-          compare:"比较"
-        },
-        {
-          name:"718 Cayman",
-          price:"545,000元起 *",
-          path:require('@/../static/img/Car_img/porsche-model_03.webp'),
-          power:"184kw/250PS",
-          powerdes:"最大功率(kw)/最大功率(PS)",
-          second:"5.6s",
-          secondes:"0 - 100km/h加速时间",
-          speed:"260km/h",
-          speeddes:"最高时速",
-          tecdata:"技术数据",
-          carconfig:"车辆配置器",
-          compare:"比较"
-        },
-        {
-          name:"718 Cayman",
-          price:"545,000元起 *",
-          path:require('@/../static/img/Car_img/porsche-model_03.webp'),
-          power:"184kw/250PS",
-          powerdes:"最大功率(kw)/最大功率(PS)",
-          second:"5.6s",
-          secondes:"0 - 100km/h加速时间",
-          speed:"260km/h",
-          speeddes:"最高时速",
-          tecdata:"技术数据",
-          carconfig:"车辆配置器",
-          compare:"比较"
-        }
-      ]
     };
 
   },
   methods: {
+    GoIndex(){
+      // this.$router.replace('/index')
+      location.href = "/index"
+
+    },
     afterLoad: function(origin, destination, direction) {
       console.log('After load....');
       console.log(destination);
@@ -381,5 +300,16 @@ video{
   /*margin-top:0px;*/
   /*margin-top: -130px;*/
   bottom: 10px;
+}
+#controlheader{
+  width: 700px;
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
+}
+#price{
+  position: relative;
+  transform: translate(-50%);
+  left: 50%;
 }
 </style>
