@@ -3,6 +3,72 @@
     <full-page :options="options" id="fullpage" ref="fullpage" v-cloak>
       <div class="section" :style="{backgroundImage:'url(' + bacimg +')'}">
         <div class="slide" v-for="item in this.$store.state.CarData" v-cloak>
+          <el-drawer
+              :visible.sync="drawer"
+              :direction="direction"
+              :before-close="handleClose"
+              :append-to-body=true
+              :size="'100%'">
+            <div>
+            <nav id="nav1">
+              <h1>{{cartechincal.name}}</h1>
+              <ul id="navul">
+                <li>{{ cartechincal.price }}*元起  <span class="navspan">制造商建议零售价(含增值税)</span></li>
+                <li>{{cartechincal.bestpower}} / {{cartechincal.maxtorque}}<span class="navspan">最大功率 (kw)/最大功率 (PS)</span></li>
+                <li>{{cartechincal.zerohundertime}}s <span class="navspan">0-100 km/h 加速时间</span></li>
+                <li>{{cartechincal.maxspeed}} km/h <span class="navspan">最高时速</span></li>
+              </ul>
+            </nav>
+            <header>
+              <div id="modelcontrol">
+                <img src="http://127.0.0.1:8000/static/718/718model.png" alt="">
+              </div>
+              <div id="tipsprice">
+                * 所列的制造商建议零售价（含增值税）仅供参考，并不包括运输费用、税费（另有明确规定的除外）、牌照、所有权、非强制或地区性要求的设备。特别是，制造商建议零售价（含增值税）并未包含 2016 年 12 月 1 日起生效的《财政部、国家税务总局关于对超豪华小汽车加征消费税有关事项的通知》所要求加征的消费税。根据《关于深化增值税改革有关政策的公告》，自 2019 年 4 月 1 日起增值税税率进行调整。因此所列的厂商建议零售价将可能进行调整。请您与保时捷授权经销商咨询具体的价格信息。
+              </div>
+              <div id="navleft">
+<!--                <h1>技术数据</h1>-->
+                <el-collapse v-model="activeNames" @change="handleChange">
+                  <el-collapse-item title="驱动单元 Driver Element" name="1">
+                    <div class="controlnav"><span class="nleft">气缸数</span><span class="nright">{{cartechincal.number_of_cylinders}}</span></div>
+                    <div class="controlnav"><span class="nleft">排量</span><span class="nright">{{cartechincal.displacement}} cm³</span></div>
+                    <div class="controlnav"><span class="nleft">最大功率(kw)</span><span class="nright">{{cartechincal.bestpower}} kw</span></div>
+                    <div class="controlnav"><span class="nleft">最大功率(PS)</span><span class="nright">{{cartechincal.maxtorque}} PS</span></div>
+                    <div class="controlnav"><span class="nleft">最大功率对应发动机转速</span><span class="nright">{{cartechincal.mostpowerspeed}} rpm</span></div>
+                    <div class="controlnav"><span class="nleft">发动机最高转速</span><span class="nright">{{cartechincal.enginemostspeed}} rpm</span></div>
+                    <div class="controlnav"><span class="nleft">最大扭矩</span><span class="nright">{{cartechincal.maxtorque}} Nm</span></div>
+                    <div class="controlnav"><span class="nleft">最大扭矩对应发动机转速</span><span class="nright">{{cartechincal.maximumSpeed}} rpm</span></div>
+                  </el-collapse-item>
+                  <el-collapse-item title="性能 Performance" name="2">
+                    <div class="controlnav"><span class="nleft">最高时速</span><span class="nright">{{cartechincal.maxspeed}} km/h</span></div>
+                    <div class="controlnav"><span class="nleft">0-100km/h加速时间</span><span class="nright">{{cartechincal.zerohundertime}} s</span></div>
+                    <div class="controlnav"><span class="nleft">0-160km/h加速时间</span><span class="nright">{{cartechincal.zerohuntersix}} s</span></div>
+                    <div class="controlnav"><span class="nleft">80-120kn/h加速时间</span><span class="nright">{{cartechincal.eightspped}} s</span></div>
+                  </el-collapse-item>
+                  <el-collapse-item title="车身 Car Body" name="3">
+                    <div class="controlnav"><span class="nleft">长度</span><span class="nright">{{cartechincal.carlong}} mm</span></div>
+                    <div class="controlnav"><span class="nleft">宽度</span><span class="nright">{{cartechincal.carwidth}} mm</span></div>
+                    <div class="controlnav"><span class="nleft">宽度(包含后视镜)</span><span class="nright">{{cartechincal.carwidthmirror}} mm</span></div>
+                    <div class="controlnav"><span class="nleft">高度</span><span class="nright">{{cartechincal.carheight}} mm</span></div>
+                    <div class="controlnav"><span class="nleft">轴距</span><span class="nright">{{cartechincal.maxtorque}} mm</span></div>
+                    <div class="controlnav"><span class="nleft">空载重量(中国)</span><span class="nright">{{cartechincal.weight}} kg</span></div>
+                  </el-collapse-item>
+                  <el-collapse-item title="容量 Capacity" name="4">
+                    <div class="controlnav"><span class="nleft">行李厢容积(前)</span><span class="nright">{{cartechincal.contentarea}}</span></div>
+                    <div class="controlnav"><span class="nleft">行李厢容积(前排座椅后，至车顶)</span><span class="nright">{{cartechincal.mostcontentarea}}</span></div>
+                    <div class="controlnav"><span class="nleft">燃油箱</span><span class="nright">{{cartechincal.oilbox}}</span></div>
+                  </el-collapse-item>
+                  <el-collapse-item title="制造商建议零售价 Establish retail price" name="5">
+                    <div class="controlnav"><span class="nleft">PDK</span><span class="nright">{{cartechincal.price}} 元起*</span></div>
+                    <br>
+                    <div>* 所列的制造商建议零售价（含增值税）仅供参考，并不包括运输费用、税费（另有明确规定的除外）、牌照、所有权、非强制或地区性要求的设备。特别是，制造商建议零售价（含增值税）并未包含 2016 年 12 月 1 日起生效的《财政部、国家税务总局关于对超豪华小汽车加征消费税有关事项的通知》所要求加征的消费税。根据《关于深化增值税改革有关政策的公告》，自 2019 年 4 月 1 日起增值税税率进行调整。因此所列的厂商建议零售价将可能进行调整。请您与保时捷授权经销商咨询具体的价格信息。</div>
+                  </el-collapse-item>
+                </el-collapse>
+              </div>
+            </header>
+            </div>
+          </el-drawer>
+
           <div class="meta">
             <h2 id="controlheader">{{item.carheader}}</h2>
             <h4 id="price">{{ item.carprice }}*元起</h4>
@@ -25,7 +91,7 @@
                 <span class="des">最高时速</span>
               </div>
               <div class="but">
-                <div class="chi">
+                <div class="chi" @click="getData(item.id)" type="primary">
                   技术数据
                 </div>
                 <div class="chi">
@@ -39,61 +105,148 @@
           </div>
         </div>
       </div>
-      <div class="section">
+      <div v-if="this.$store.state.CarTypeId === 4" class="section">
+        <h2 id="TaycanHeader" style="font-size: 32px">Taycan设计理念</h2>
+        <div id="TayCanHeaderLeft">
+          <div>
+            <video :src="require('@/../static/video/TaycanDesign.mp4')" loop autoplay muted></video>
+          </div>
+        </div>
+        <el-button style="display: none"></el-button>
+        <div id="TaycanHeaderRight">
+          <div id="TaycanHeaderControl">
+            <p style="position: absolute;top: -350px;font-size: 10px;width: 1000px;left: -1060px;text-align: left;font-family: 'Microsoft YaHei UI Light'">请注意，本页面所显示的车辆及/或车辆装备（包括但不限于充电装备）图片仅作为通用版本用于各个国家/地区展示和参考使用。由于各个国家/地区的法律要求（尤其是在车辆质量、安全性、网络安全、个人数据等的存储和传输等方面的法律要求）、市场情况（包括道路和网络现状等）、用户习惯（例如由于文化差异）的不同，您所购买的车辆可能在不同国家/地区会配置不同的装备。本页面所展示图片是保时捷为您所购买的车辆所制定的适用于各个国家/地区的通用版。因此，可能出现实际装备描述与本广告中的图示或描述有所不同的情形。</p>
+            <h2 style="font-size: 32px;font-weight: 600;position: absolute;top: -50px;user-select: none">电驰 神往</h2>
+          <p style="width: 378px;text-align: left;line-height: 28px;font-size: 18px;user-select: none">灵魂有其千面多样性，而从无固定形态。它是可变且不断变化着的——以各种方式将自己展现于人前。当您将目光投注于保时捷 Taycan，灵魂便一展微笑，表达出全然的喜悦之情。又或者，当 Taycan Turbo S 的 1.2g 静止起动性能一触即发时，您兴奋战栗到浑身起鸡皮疙瘩。</p>
+          </div>
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.CarTypeId === 5" class="section">
+        <div id="PanmeraHeaderLeft">
+          <div>
+            <img src="http://127.0.0.1:8000/static/Panamera/panamera/PanmeraShow.png"/>
+          </div>
+        </div>
+        <div id="PanmeraHeaderRight">
+          <div id="PanmeraheaderControl">
+            <p style="position: absolute;top: -350px;font-size: 10px;width: 1000px;left: -1060px;text-align: left;font-family: 'Microsoft YaHei UI Light'">请注意，本页面所显示的车辆及/或车辆装备（包括但不限于充电装备）图片仅作为通用版本用于各个国家/地区展示和参考使用。由于各个国家/地区的法律要求（尤其是在车辆质量、安全性、网络安全、个人数据等的存储和传输等方面的法律要求）、市场情况（包括道路和网络现状等）、用户习惯（例如由于文化差异）的不同，您所购买的车辆可能在不同国家/地区会配置不同的装备。本页面所展示图片是保时捷为您所购买的车辆所制定的适用于各个国家/地区的通用版。因此，可能出现实际装备描述与本广告中的图示或描述有所不同的情形。</p>
+            <h2 style="font-size: 32px;font-weight: 600;position: absolute;top: -50px;user-select: none">Panamera 理念</h2>
+            <p style="width: 378px;text-align: left;line-height: 28px;font-size: 18px;user-select: none">幻想能够符合逻辑吗？可以符合逻辑吗？也许不。我们坚信，最初的幻想越是天马行空，最后的结果往往也越令人惊艳。Panamera 就是这种值得为之奋斗的梦想。一台供四人乘坐的跑车？兼备出色的运动性和出众的舒适性？
+
+              同时兼具典型的保时捷动力和更高的效率？许多人认为这不可能，还有人称之为勇气可嘉</p>
+          </div>
+        </div>
+      </div>
+      <div v-else class="section">
 <!--        <h3>-->
         <div class="video">
-          <video :src="require('@/../static/video/718.mp4')" loop autoplay muted height="750px"></video>
+          <video :src="basedata.videoone" loop autoplay muted height="750px"></video>
         </div>
 <!--        </h3>-->
         <div id="main">
           <h2 id="title">
-            设计
+            {{ basedata.firsttitle }}
           </h2>
-          <span>精准精准而不花哨；自信而不拘谨。整体外形低矮、宽大、流畅。718 车型的外观设计以富有运动感的线条和个性分明的外形轮<br>廓为特点。</span>
+          <span>{{basedata.firsttext}}</span>
           <button id="click">
             +探索更多内容
           </button>
         </div>
       </div>
-      <div class="section">
+
+      <div v-if="this.$store.state.CarTypeId === 4" class="section" id="control" :style="{backgroundImage: 'url(' + this.$store.state.BacImg + ')', backgroundSize:'contain',backgroundPosition:'top center',backgroundRepeat:'no-repeat'}">
+        <div id="ControlDetail">
+        <DetailShow></DetailShow>
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.CarTypeId === 5" class="section" id="control2" :style="{backgroundImage: 'url(' + this.$store.state.BacImg + ')', backgroundSize:'contain',backgroundPosition:'top center',backgroundRepeat:'no-repeat'}">
+        <div id="ControlDetail2">
+          <PanameraDetail></PanameraDetail>
+        </div>
+      </div>
+      <div v-else class="section">
 <!--        <h3>-->
         <div class="video">
-          <video :src="require('@/../static/video/718_comfortable.mp4')" loop autoplay muted height="750px"></video>
+          <video :src="basedata.videotwo" loop autoplay muted height="750px"></video>
 <!--        </h3>-->
         </div>
         <div class="main_02">
           <h2 class="title_02">
-            舒适性
+            {{ basedata.secondtitle }}
           </h2>
-          <span>自适应减震器可提升日常驾驶的舒适性。此外，车辆还拥有多处储物空间和宽敞的腿部空间，双行李厢能够储存更多物品。。</span>
+          <span>{{basedata.secondtext}}</span>
           <button class="click_02">
             +探索更多内容
           </button>
         </div>
       </div>
-      <div class="section">
+
+      <div v-if="this.$store.state.CarTypeId === 4" class="section" id="c4">
+        <ul id="Carmeaageul">
+          <li class="z1">设计<span class="tipscar">查看内饰、外饰和可选车轮<i class="el-icon-arrow-right"></i></span></li>
+          <li class="z2">性能<span class="tipscar">了解驱动装置、底盘和制动系统<i class="el-icon-arrow-right"></i></span></li>
+          <li class="z3">充电<span class="tipscar">探索更多关于充电知识，在家充电和尊享充电的信息<i class="el-icon-arrow-right"></i></span></li>
+          <li class="z4">舒适性<span class="tipscar">了解车内舒适性、信息娱乐和辅助功能<i class="el-icon-arrow-right"></i></span></li>
+        </ul>
+      </div>
+      <div v-else-if="this.$store.state.CarTypeId === 5" class="section" id="c5">
+        <ul id="Carmeaageul2">
+          <li class="z1">设计<span class="tipscar">查看内饰、外饰和可选车轮<i class="el-icon-arrow-right"></i></span></li>
+          <li class="z2">性能<span class="tipscar">了解驱动装置、底盘和制动系统<i class="el-icon-arrow-right"></i></span></li>
+          <li class="z3">充电<span class="tipscar">探索更多关于充电知识，在家充电和尊享充电的信息<i class="el-icon-arrow-right"></i></span></li>
+          <li class="z4">舒适性<span class="tipscar">了解车内舒适性、信息娱乐和辅助功能<i class="el-icon-arrow-right"></i></span></li>
+        </ul>
+      </div>
+      <div v-else class="section">
 <!--        <h3>-->
         <div class="video">
-          <video :src="require('@/../static/video/718_farway.mp4')" loop autoplay muted height="750px" width="1400px"></video></div>
+          <video :src="basedata.videothree" loop autoplay muted height="750px" width="1400px"></video></div>
         <div class="main_03">
           <h2 class="title_03">
-            718 T
+            {{ basedata.thirddtitle }}
           </h2>
-          <span>有时，漫无目的才是更好的选择。怎样去到那里？我们去芜存菁：一辆纯粹的跑车，让您忘掉手机、只想升档提速。这辆保时捷只需要一条明确的路——当然，还有您。游刃自如。</span>
+          <span>{{basedata.thirdtext}}</span>
           <button class="click_03">
             +探索更多内容
           </button>
         </div>
       </div>
-      <div class="section">
-<!--        <h3>-->
+
+      <div v-if="this.$store.state.CarTypeId === 4" class="section">
         <div class="video">
-          <img id="male" :src="require('@/../static/img/Car_img/porsche-normal_spc.webp')" alt="" style="height: 750px"></div>
+          <img id="male2" src="http://127.0.0.1:8000/static/TayCan/Taybac/TaycanMale.png" alt="" style="height: 750px"></div>
         <div class="main_04">
           <h2 class="title_04">
-            718 GTS
+            Taycan
           </h2>
-          <span>彻底震撼感官，同时拨动您的心弦的跑车。纯粹的保时捷跑车，四个气缸，一位车手：那就是您。。</span>
+          <span>我们的工程师仅仅稍作停留遍继续向前，正如您所见，Taycan就是我们的答案</span>
+          <button class="click_04">
+            +探索更多内容
+          </button>
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.CarTypeId === 5" class="section">
+        <div class="video">
+          <img id="male3" src="http://127.0.0.1:8000/static/Panamera/panamera/PanameraShow2.png" alt="" style="height: 750px"></div>
+        <div class="main_04">
+          <h2 class="title_04">
+            踏上旅途
+          </h2>
+          <span>人生是一段漫无目的的旅途，Panamera做的正是让您的旅途舒坦</span>
+          <button class="click_04">
+            +探索更多内容
+          </button>
+        </div>
+      </div>
+      <div v-else class="section">
+<!--        <h3>-->
+        <div class="video">
+          <video :src="basedata.videofour" loop autoplay muted height="750px" width="1400px"></video></div>
+        <div class="main_04">
+          <h2 class="title_04">
+            {{ basedata.fourdtitle }}
+          </h2>
+          <span>{{basedata.fourtext}}</span>
           <button class="click_04">
             +探索更多内容
           </button>
@@ -182,8 +335,17 @@
 <script>
 import MiniFotter from "../components/MiniFotter";
 import $ from "jquery"
+import DetailShow from "./DetailShow";
+import PanameraDetail from "./PanameraDetail";
 import axios from "axios";
 export default {
+  mounted() {
+    axios.get(this.API.API_PAGEBASEDATA + this.$store.state.CarTypeId).then(res => {
+      this.basedata = res.data
+    }).catch(err => {
+      alert(err.data)
+    })
+  },
   beforeDestroy() {
     $.fn.fullpage.destroy('all');
   },
@@ -192,6 +354,12 @@ export default {
   style: process.env.STYLE,
   data() {
     return {
+      basedata:"",
+      cartechincal:"",
+      activeNames: ['1'],
+      drawer: false,
+      direction: 'btt',
+      // CarType:"Taycan",
       options: {
         licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
         afterLoad: this.afterLoad,
@@ -215,10 +383,31 @@ export default {
 
   },
   methods: {
+    handleChange(val) {
+      console.log(val);
+    },
+    getData(pk){
+      console.log(pk);
+
+      axios.get(this.API.API_CARTACHINCALDATA + pk + "/").then(res => {
+        this.cartechincal = res.data
+        console.log(this.cartechincal)
+      }).catch(err => {
+        alert(err.data)
+      })
+      this.drawer = true;
+
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+    },
     GoIndex(){
       // this.$router.replace('/index')
       location.href = "/index"
-
     },
     afterLoad: function(origin, destination, direction) {
       console.log('After load....');
@@ -227,26 +416,72 @@ export default {
         // this.$refs.fullpage.init();
       }
       if (destination.index === 1){
+        if (this.$store.state.CarTypeId === 4){
+          setTimeout(()=>{
+            $("#TaycanHeader").slideUp("slow")
+          },1500)
+          $('video').get(parseInt(destination.index - 1)).play()
+          setTimeout(()=>{
+            $('#TayCanHeaderLeft').slideDown("slow");
+          },2500)
+          setTimeout(()=>{
+            $('#TaycanHeaderRight').show("slow")
+          },3000)
+          const h = this.$createElement;
+          this.$notify({
+            title: '温馨提示',
+            message: h('i', { style: 'color: red'}, '您很有眼光看上了我们的Taycan系列，但同时请注意个人隐私的安全，切勿在网络上随意留下自己联系方式--Porsche')
+          });
+        }
+        else if (this.$store.state.CarTypeId === 5){
 
-        this.dis()
-        $('video').get(parseInt(destination.index - 1)).play()
-        // this.$refs.fullpage.init();
+        }
+        else {
+          this.dis()
+          $('video').get(parseInt(destination.index - 1)).play()
+          // this.$refs.fullpage.init();
+        }
 
       }else if (destination.index === 2){
-
-        this.dis_02()
-        $('video').get(parseInt(destination.index - 1)).play()
-        console.log("第三页")
+        if (this.$store.state.CarTypeId === 4 || this.$store.state.CarTypeId === 5){
+          console.log("待处理哦")
+        }
+        else {
+          this.dis_02()
+          $('video').get(parseInt(destination.index - 1)).play()
+          console.log("第三页")
+        }
         // this.$refs.fullpage.init();
 
       }else if (destination.index === 3){
-
-        this.dis_03()
-        $('video').get(parseInt(destination.index - 1)).play()
-        this.$refs.fullpage.init();
+        if (this.$store.state.CarTypeId === 4 || this.$store.state.CarTypeId === 5){
+          setTimeout(()=>{
+            $(".z1").fadeIn("slow")
+          },1000)
+          setTimeout(()=>{
+            $(".z2").fadeIn("slow")
+          },1400)
+          setTimeout(()=>{
+            $(".z3").fadeIn("slow")
+          },1800)
+          setTimeout(()=>{
+            $(".z4").fadeIn("slow")
+          },2200)
+        }
+        else {
+          this.dis_03()
+          $('video').get(parseInt(destination.index - 1)).play()
+          this.$refs.fullpage.init();
+        }
 
       }else if (destination.index === 4){
-        this.dis_04()
+        if (this.$store.state.CarTypeId === 4 || this.$store.state.CarTypeId === 5){
+          this.dis_04()
+        }
+        else {
+          this.dis_04()
+          $('video').get(parseInt(destination.index - 1)).play()
+        }
         this.$refs.fullpage.init();
       }else if (destination.index === 5){
         this.$refs.fullpage.init();
@@ -274,14 +509,18 @@ export default {
     }
   },
   components:{
-    MiniFotter
-  }
+    MiniFotter,
+    DetailShow,
+    PanameraDetail
+  },
 };
 </script>
 
 <style scoped>
 @import "../../static/css/Detail/style.css";
 @import "../../static/css/Detail/bottom.css";
+@import "../../static/css/Detail/Taycan.css";
+@import "../../static/css/Detail/Panamera.css";
 /*img{*/
 /*  width:100%; height:100%;*/
 /*}*/
@@ -311,5 +550,13 @@ video{
   position: relative;
   transform: translate(-50%);
   left: 50%;
+}
+#c4{
+  background: url("http://127.0.0.1:8000/static/TayCan/Taybac/TaycanMain.png") no-repeat top center;
+  background-size: cover;
+}
+#c5{
+  background: url("http://127.0.0.1:8000/static/Panamera/panamera/PanameraMain.png") no-repeat top center;
+  background-size: cover;
 }
 </style>

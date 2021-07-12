@@ -32,7 +32,11 @@
             <span id="tippwd" v-show="pwdlength">密码长度应在8位到12位之间</span>
             <input type="password" name="password2" placeholder="再次输入密码" v-model="password2" @blur="check_cpwd">
             <span id="confirm" v-show="error_check_password">{{ passmessage }}</span>
-            <div @click="register" id="register">注册</div>
+            <div id="register" @click="register"> <el-button
+                plain
+                id="registerconntrol">
+              注册
+            </el-button></div>
             <p class="signup">已有账号？<a href="javascript:;" @click="topggleForm">登录</a></p>
           </form>
         </div>
@@ -40,6 +44,8 @@
       </div>
     </div>
   </section>
+  <el-button >
+  </el-button>
   <canvas class="background"></canvas>
 </div>
 </template>
@@ -69,6 +75,13 @@ export default {
     }
   },
   methods:{
+    // open1() {
+    //   this.$notify({
+    //     title: '成功',
+    //     message: '注册成功',
+    //     type: 'success'
+    //   });
+    // },
     login(){
       if (this.username === '' || this.password === ''){
         this.err_msg = "用户名或密码不能为空"
@@ -91,7 +104,9 @@ export default {
         sessionStorage.birthday = response.data.birthday
         sessionStorage.profession = response.data.profession
         sessionStorage.gender = response.data.gender
-        this.$router.push('/index')
+        this.$router.push('/profile').catch(error => {
+          console.log(error)
+        })
       })
       .catch(err=>{
         // alert("账号或密码错误")
@@ -110,11 +125,21 @@ export default {
       .then(response =>{
         if (response.data.msg === "success"){
           this.register_suc = response.data.msg
-          location.reload();
+          this.$notify({
+            title: '成功',
+            message: '注册成功,3秒后跳转到登录页面',
+            type: 'success'
+          });
+          setTimeout(()=>{
+            location.reload()
+          },3000)
         }
       })
       .catch(err=>{
-        alert("注册失败!")
+        this.$notify.error({
+          title: '错误',
+          message: '注册失败，请检查您的输入'
+        });
       })
     },
     topggleForm(){
@@ -163,6 +188,12 @@ export default {
   width: 100px;
   line-height: 40px;
   text-align: center;
+}
+#registerconntrol{
+  background-color: #677eff;
+  border: none;
+  color: white;
+  font-size: 14px;
 }
 #login{
   margin-top: 10px;

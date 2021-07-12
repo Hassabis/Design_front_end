@@ -1,0 +1,45 @@
+#PanmeraheaderControl{
+    position: absolute;
+    left: 70%;
+    top: 410px;
+}
+#PanmeraHeaderLeft{
+    /*display: none;*/
+    position: absolute;
+    width: 1012px;
+    /*height: 974px;*/
+    top: 130px;
+}
+#PanmeraHeaderRight{
+    /*display: none;*/
+}
+#ControlDetail2{
+    text-align: center;
+    position: relative;
+    left: 70%;
+    top: 45%;
+    height: 250px;
+    width: 100vw;
+    /*background-color: sandybrown;*/
+    transform: translate(-50%,-50%);
+}
+.tipscar{
+    display: block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+#Carmeaageul2{
+    margin-left: 100px;
+}
+#Carmeaageul2>li{
+    display: none;
+    text-align: left;
+    padding: 3%;
+    font-size: 28px;
+    /*display: block;*/
+    background: white;
+    width: 600px;
+    height: 120px;
+    line-height: 20px;
+    margin-top: 10px;
+}

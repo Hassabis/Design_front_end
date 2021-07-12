@@ -10,5 +10,13 @@ export default {
     //三级分类
     API_GET_THIRD_CLASSIFICATION:serverBase + "/Thirdclasscar/",
     //分类下所有车辆详情信息
-    API_GET_DETAILCAR:serverBase + "/detailCar/"
+    API_GET_DETAILCAR:serverBase + "/detailCar/",
+    //用户操作
+    API_POST_MODIFYUSERMESSAGE:serverBase + "/modify/",
+    //地址管理
+    API_ADDERSS_MANAGE:serverBase + "/adderss/",
+    //车辆技术数据
+    API_CARTACHINCALDATA:serverBase + "/techincalCar/",
+    // 页面基本数据
+    API_PAGEBASEDATA:serverBase + "/pagemessage/"
 }

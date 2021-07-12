@@ -106,7 +106,10 @@ export default {
       })
       setInterval(()=>{
         if (this.$store.state.CarData.length > 0){
-          this.$router.replace("/detail")
+          this.$router.replace("/detail").catch(err => {
+          })
+          clearInterval()
+          return;
         }
       },10)
     }

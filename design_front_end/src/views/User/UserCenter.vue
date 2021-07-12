@@ -54,7 +54,7 @@
                               </el-col>
                             </el-form-item>
                             <el-form-item label="职业">
-                              <el-input v-model="form.name"></el-input>
+                              <el-input v-model="form.Mprofession">{{profession}}</el-input>
                             </el-form-item>
                           <div class="demo-drawer__footer">
                             <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
@@ -69,9 +69,9 @@
                         姓名 <br>
                         <span class="guo">{{ username }}</span>
                       </span>
-                      <span class="message">
+                      <span class="message" id="guoguo2">
                         性别 <br>
-                        <span class="guo">{{ gender }}</span>
+                        <span class="guo" id="guo2">{{ gender }}</span>
                       </span><br>
                       <span class="message">
                         生日<br>
@@ -86,7 +86,7 @@
                   </div>
                 </el-tab-pane>
                 <el-tab-pane>
-                  <span slot="label">
+                  <span slot="label" @click="getAdderss(sessionStorage.user_id)">
                     <i class="el-icon-magic-stick"></i> 收货地址
                   </span>
                   <div id="home">
@@ -97,26 +97,10 @@
                   </div>
                   <div v-else id="have" style="width: 370px;text-align: left">
                     <div id="daddy">
-                      <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
-                        <h3>{{ username }}</h3><h4 id="default">默认地址</h4>
-                        <span style="display: block;margin-top: -40px">手机:18670488561</span><br>
-                        <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
-                        <div class="opertion">
-                          <span>编辑</span><span>删除</span>
-                        </div>
-                      </div>
-                      <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
-                        <h3>{{ username }}</h3>
-                        <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
-                        <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
-                        <div class="opertion">
-                          <span>编辑</span><span>删除</span>
-                        </div>
-                      </div>
-                      <div class="detail" style="font-family: 'Microsoft YaHei UI Light'">
-                        <h3>{{ username }}</h3>
-                        <span style="display: block;margin-top: 10px">手机:18670488561</span><br>
-                        <span style="display: block;margin-top: -5px">地址：广东省广州市白云区</span>
+                      <div class="detail" style="font-family: 'Microsoft YaHei UI Light'" v-for="i in adderss">
+                        <h3>{{ i.adderssusername }}</h3>
+                        <span style="display: block;margin-top: 10px">手机:{{i.phone}}</span><br>
+                        <span style="display: block;margin-top: -5px">地址：{{i.adderss}}</span>
                         <div class="opertion">
                           <span>编辑</span><span>删除</span>
                         </div>
@@ -161,27 +145,43 @@
 <script>
 import MiniFotter from "../../components/MiniFotter";
 import $ from "jquery"
+import axios from "axios";
 export default {
   mounted() {
     let username = sessionStorage.username;
     let birthday = sessionStorage.birthday
     let profession = sessionStorage.profession
+    let uid = sessionStorage.user_id
     if (username === undefined){
       location.href = '/login';
       return;
     }
-    if (sessionStorage.gender){
+    if (sessionStorage.gender === true){
       this.gender = "男"
     }else {
       this.gender = "女"
     }
+    // this.gender = sessionStorage.gender === false ? "女":"男"
     this.username = username
     this.birthday = birthday
     this.profession = profession
+    this.form.name = this.username
+    this.form.Mprofession = this.profession
+    this.form.region = this.gender
+    this.uid = uid
+    console.log(uid)
+    axios.get(this.API.API_ADDERSS_MANAGE + uid + "/").then(res => {
+      this.adderss = res.data
+    })
+    console.log(this.adderss)
+  },
+  watch:{
+
   },
   name: "UserCenter",
   data() {
     return {
+      Axiosadderss:"",
       gender:'',
       profession:'',
       birthday:'',
@@ -194,11 +194,7 @@ export default {
       input: '',
       drawer: false,
       direction: 'rtl',
-      adderss:[
-        {
-          name:"崽崽"
-        }
-      ],
+      adderss:"",
       collect:[
         {
           carname:"Porsche 911",
@@ -240,28 +236,49 @@ export default {
         delivery: false,
         type: [],
         resource: '',
-        desc: ''
+        desc: '',
+        Mprofession:''
       }
     };
   },
   methods: {
+    getAdderss(pk){
+      axios.get(this.API.API_ADDERSS_MANAGE + uid + "/").then(res => {
+        this.Axiosadderss = res.data
+      })
+    },
     handleClick(tab, event) {
       console.log(tab, event);
     },
     handleClose(done) {
+      let formdata = this.form
       if (this.loading) {
         return;
       }
       this.$confirm('确认提交嘛？')
           .then(_ => {
             this.loading = true;
-            this.timer = setTimeout(() => {
               done();
-              // 动画关闭需要一定的时间
-              setTimeout(() => {
+              axios.put(this.API.API_POST_MODIFYUSERMESSAGE,{
+                "data":formdata,
+                "uid":this.uid
+              }).then(res => {
+                console.log(res.data)
+                this.username = res.data.username
+                this.profession = res.data.profession
+                this.birthday = res.data.birthday
+                this.gender = res.data.gender === false ? "女":"男"
                 this.loading = false;
-              }, 400);
-            }, 2000);
+                // sessionStorage.token = response.data.token;
+                sessionStorage.username = res.data.username
+                sessionStorage.user_id = res.data.id;
+                sessionStorage.birthday = res.data.birthday
+                sessionStorage.profession = res.data.profession
+                sessionStorage.gender = res.data.gender
+                console.log(sessionStorage.gender)
+              }).catch(err => {
+                alert(err.data)
+              })
           })
           .catch(_ => {});
       console.log(this.value2)
@@ -287,211 +304,5 @@ export default {
 </script>
 
 <style scoped>
-#fotter{
-  position: absolute;
-  bottom: -10px;
-}
-#Porche{
-  width: 123px;
-  height: 75px;
-  position: relative;
-  left: 50%;
-  margin-left: -61.5px;
-}
-#line1{
-  background-color: #e3e4e4;
-  width: 650px;
-  height: 1px;
-  position: absolute;
-  top: 60px;
-  left: 30px;
-}
-#line2{
-  background-color: #e3e4e4;
-  width: 650px;
-  height: 1px;
-  position: absolute;
-  top: 60px;
-  right: 30px;
-}
-#main{
-  position: relative;
-  width: 1400px;
-  left: 50%;
-  margin-left: -700px;
-}
-#user{
-  font-family: "Microsoft YaHei UI Light";
-  position: absolute;
-  right: 10px;
-  top: 9px;
-}
-.userdesc{
-  display: block;
-  margin-top: 30px;
-  margin-left: 100px;
-  font-size: 32px;
-}
-#userchoose{
-  margin-left: 160px;
-  margin-top: 30px;
-}
->>>.el-tabs--left span{
-  font-size: 14px;
-}
->>>.el-tabs--card>.el-tabs__header .el-tabs__nav{
-  border: none;
-}
->>>.el-tabs--left.el-tabs--card .el-tabs__item.is-left{
-  border: none;
-}
-#UserMessage{
-  margin-left: 100px;
-  margin-top: 3px;
-}
-#countdata{
-  display: block;
-  font-family: "Microsoft YaHei UI Light";
-  font-size: 28px;
-}
-#mobile{
-  display: block;
-  margin-top: 15px;
-}
-#phone{
-  width: 250px;
-  margin-left: -5px;
-}
-#basicmessage{
-  width: 600px;
-  margin-top: 25px;
-  font-family: Microsoft YaHei UI Light;
-  font-size: 26px;
-  height: 40px;
-  line-height: 40px;
-}
-#edit:hover{
-  cursor: pointer;
-}
-#message{
-  margin-top: 5px;
-  font-family: "Microsoft YaHei UI Light";
-  height: 300px;
-}
-#message>span{
-  display: inline-block;
-  margin-top: 10px;
-}
-#message>span:nth-child(1){
-
-}
-#message>span:nth-child(2){
-  margin-left: 400px;
-}
-#message>span:nth-child(3){
-  margin-left: 30px;
-  position: relative;
-
-}
-#message>span:nth-last-child(1){
-  margin-left: 375px;
-}
-.guo{
-  display: inline-block;
-  margin-top: 10px;
-}
-#motto{
-  font-family: "Microsoft YaHei UI Light";
-  margin-top: 70px;
-}
-#home{
-  margin-left: 100px;
-  margin-top: 3px;
-}
-#homeadderss{
-  display: block;
-  font-family: "Microsoft YaHei UI Light";
-  font-size: 28px;
-}
-#hasno{
-  margin-left: 95px;
-  margin-top: 34px;
-}
-#have{
-  position: relative;
-  margin-left: 100px;
-  margin-top: 25px;
-  border-radius: 10px;
-  /*padding-left: 10px;*/
-  /*padding-top: 2px;*/
-  /*padding-bottom: 10px;*/
-}
-.opertion{
-  margin-top: 15px;
-}
-.opertion>span{
-  text-align: center;
-  display: inline-block;
-  color: deepskyblue;
-}
-.opertion>span:nth-last-child(1){
-  margin-left: 10px;
-}
-#default{
-  position: relative;
-  right: -230px;
-  font-size: 12px;
-  padding: 1px;
-  width: 100px;
-  text-align: center;
-  border-radius: 10px;
-  border: 2px solid darkkhaki;
-  top: -40px;
-}
-#inner>span{
-  display: inline-block;
-}
-#daddy{
-  width: 360px;
-  /*background-color: salmon;*/
-  overflow: auto;
-  height:300px;
-}
-.detail{
-  padding-top: 5px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  background-color: #e3e4e4;
-  margin-top: 25px;
-}
-.demo-drawer__footer{
-  margin-left: 81px;
-}
-#guoguo{
-  position: absolute;
-  left: 160px;
-  top: 260px;
-}
-#guo{
-  width: 200px;
-  position: absolute;
-  top: 10px;
-  margin-top: 17px;
-}
-#collection{
-  margin-left: 100px;
-  margin-top: 3px;
-}
-#collect{
-  display: block;
-  font-family: "Microsoft YaHei UI Light";
-  font-size: 28px;
-}
-#gotocollection{
-  display: block;
-  margin-top: 20px;
-  user-select: none;
-  font-family: "Microsoft YaHei UI Light";
-  font-size: 18px;
-}
+@import "/static/css/user/User.css";
 </style>
