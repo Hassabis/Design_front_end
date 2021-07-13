@@ -1,0 +1,50 @@
+#Porche{
+    width: 123px;
+    height: 75px;
+    position: relative;
+    left: 50%;
+    margin-left: -61.5px;
+}
+#line1{
+    background-color: #e3e4e4;
+    width: 650px;
+    height: 1px;
+    position: absolute;
+    top: 60px;
+    left: 30px;
+}
+#line2{
+    background-color: #e3e4e4;
+    width: 650px;
+    height: 1px;
+    position: absolute;
+    top: 60px;
+    right: 30px;
+}
+#ControlContent{
+    display: flex;
+}
+.content{
+    flex: 1;
+    height: 660px;
+    /*background-color: salmon;*/
+    margin-left: 1px;
+    /*border: 1px solid salmon;*/
+}
+img{
+    width: 500px;
+    height: 300px;
+}
+#price{
+    display: block;
+    font-family: "Microsoft YaHei UI Light";
+    font-size: 18px;
+    position: relative;
+    left: 20px;
+}
+#tips{
+    line-height: 30px;
+}
+h1{
+    font-size: 24px;
+}

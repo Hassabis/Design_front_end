@@ -13,6 +13,7 @@ const scroll =()=> import("../components/Scroll")
 const Te =()=> import("../components/Te")
 const user =()=> import("../views/User/UserCenter")
 const porschelogin =()=> import("../views/Login/porsche_login")
+const Purchase =()=> import("../views/HomePage/purchase")
 import Learn from "../components/Learn";
 Vue.use(Router)
 export default new Router({
@@ -47,6 +48,10 @@ export default new Router({
     {
       path:'/profile',
       component:user
+    },
+    {
+      path:'/purchase',
+      component:Purchase
     }
   ],
   mode:"history"

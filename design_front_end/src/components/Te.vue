@@ -68,7 +68,103 @@
             </header>
             </div>
           </el-drawer>
-
+          <el-drawer
+              :visible.sync="drawer2"
+              :direction="direction2"
+              :append-to-body="true"
+              :size="'100%'"
+              :before-close="handleClose">
+            <el-drawer
+                :append-to-body="true"
+                :before-close="handleClose"
+                :visible.sync="innerDrawer">
+              <div id="innerbox">
+                <ul v-for="i in carlist">
+                  <li v-if="i.name !== c1.name" @click="comCar(i)">{{i.name}}</li>
+                </ul>
+              </div>
+            </el-drawer>
+            <div style="display: flex;width: 96vw;height: 600px;margin-top: -60px">
+              <div class="compare">
+                <ul class="controlCom">
+                  <li class="header" style="font-weight: 700;font-size: 24px">最多选择两款车型进行对比</li>
+                  <li class="header">制造商建议零售价（含增值税）
+                  </li>
+                  <li class="normal">车名</li>
+                  <li class="normal">最大功率（kW）</li>
+                  <li class="normal">最大功率（PS）</li>
+                  <li class="normal">0 - 100 km/h 加速时间</li>
+                  <li class="normal">最高时速</li>
+                  <li class="normal">高度</li>
+                  <li class="normal">宽度</li>
+                  <li class="normal">长度</li>
+                  <li class="normal">轴距</li>
+                </ul>
+              </div>
+              <div class="compare" v-if="c1.length === 0">
+                <li class="header choosecar" style="list-style: none">
+                  <el-button plain @click="chooseCar(1)">添加其他车辆+</el-button>
+                </li>
+              </div>
+              <div class="compare" v-else>
+                <ul class="controlCom">
+                  <li class="header" style="font-weight: 700;font-size: 24px">
+                    <div id="de1" @click="deleteCom(1)">
+                      <i class="el-icon-close" style="font-size: 32px"></i>
+                    </div>
+                    <div>
+                      <img :src="c1.carimage" alt="">
+                    </div>
+                  </li>
+                  <li class="header">
+                    <span class="PDK">PDK</span>
+                    <span class="price">{{c1.price}} 元*</span>
+                    <p class="tips">* 所列的制造商建议零售价（含增值税）仅供参考，并不包括运输费用、税费（另有明确规定的除外）、牌照、所有权、非强制或地区性要求的设备。特别是，制造商建议零售价（含增值税）并未包含 2016 年 12 月 1 日起生效的《财政部、国家税务总局关于对超豪华小汽车加征消费税有关事项的通知》所要求加征的消费税。根据《关于深化增值税改革有关政策的公告》，自 2019 年 4 月 1 日起增值税税率进行调整。因此所列的厂商建议零售价将可能进行调整。请您与保时捷授权经销商咨询具体的价格信息。</p>
+                  </li>
+                  <li class="normal">{{c1.name}}</li>
+                  <li class="normal">{{c1.bestpower}}kW</li>
+                  <li class="normal">{{c1.maxtorque}}PS</li>
+                  <li class="normal">{{c1.zerohundertime}}s</li>
+                  <li class="normal">{{c1.maxspeed}}km/h</li>
+                  <li class="normal">{{c1.carheight}}mm</li>
+                  <li class="normal">{{c1.carwidth}}mm</li>
+                  <li class="normal">{{c1.carlong}}mm</li>
+                  <li class="normal">{{c1.maxtorque}}mm</li>
+                </ul>
+              </div>
+              <div class="compare" v-if="c2.length === 0">
+                <li class="header choosecar" style="list-style: none">
+                  <el-button plain @click="chooseCar(2)">添加其他车辆+</el-button>
+                </li>
+              </div>
+              <div class="compare" v-else>
+                <ul class="controlCom">
+                  <li class="header" style="font-weight: 700;font-size: 24px">
+                    <div id="de2" @click="deleteCom(2)">
+                      <i class="el-icon-close" style="font-size: 32px"></i>
+                    </div>
+                    <div>
+                      <img :src="c2.carimage" alt="">
+                    </div>
+                  </li>
+                  <li class="header">
+                    <span class="PDK">PDK</span>
+                    <span class="price">{{c2.price}} 元*</span>
+                    <p class="tips">* 所列的制造商建议零售价（含增值税）仅供参考，并不包括运输费用、税费（另有明确规定的除外）、牌照、所有权、非强制或地区性要求的设备。特别是，制造商建议零售价（含增值税）并未包含 2016 年 12 月 1 日起生效的《财政部、国家税务总局关于对超豪华小汽车加征消费税有关事项的通知》所要求加征的消费税。根据《关于深化增值税改革有关政策的公告》，自 2019 年 4 月 1 日起增值税税率进行调整。因此所列的厂商建议零售价将可能进行调整。请您与保时捷授权经销商咨询具体的价格信息。</p>
+                  </li>
+                  <li class="normal">{{c2.name}}</li>
+                  <li class="normal">{{c2.bestpower}}kW</li>
+                  <li class="normal">{{c2.maxtorque}}PS</li>
+                  <li class="normal">{{c2.zerohundertime}}s</li>
+                  <li class="normal">{{c2.maxspeed}}km/h</li>
+                  <li class="normal">{{c2.carheight}}mm</li>
+                  <li class="normal">{{c2.carwidth}}mm</li>
+                  <li class="normal">{{c2.carlong}}mm</li>
+                  <li class="normal">{{c2.maxtorque}}mm</li>
+                </ul>
+              </div>
+            </div>
+          </el-drawer>
           <div class="meta">
             <h2 id="controlheader">{{item.carheader}}</h2>
             <h4 id="price">{{ item.carprice }}*元起</h4>
@@ -94,10 +190,10 @@
                 <div class="chi" @click="getData(item.id)" type="primary">
                   技术数据
                 </div>
-                <div class="chi">
-                 车辆配置器
+                <div class="chi"  @click="changedrawer2(item.id)" type="primary" >
+                 购买
                 </div>
-                <div class="chi">
+                <div class="chi" @click="pushCompare(item.id)" type="primary">
                   比较
                 </div>
               </div>
@@ -219,7 +315,7 @@
           <h2 class="title_04">
             Taycan
           </h2>
-          <span>我们的工程师仅仅稍作停留遍继续向前，正如您所见，Taycan就是我们的答案</span>
+          <span>我们的工程师仅仅稍作停留便继续向前，正如您所见，Taycan就是我们的答案</span>
           <button class="click_04">
             +探索更多内容
           </button>
@@ -339,9 +435,40 @@ import DetailShow from "./DetailShow";
 import PanameraDetail from "./PanameraDetail";
 import axios from "axios";
 export default {
+  // beforeCreate() {
+  //   if (sessionStorage.getItem("store")){
+  //     this.$store.replaceState(
+  //         Object.assign(
+  //             {},
+  //             this.$store.state,
+  //             JSON.parse(sessionStorage.getItem("store"))
+  //         )
+  //     )
+  //   }
+  //   window.addEventListener("beforeunload",()=>{
+  //     sessionStorage.setItem("store",JSON.parse(this.$store.state))
+  //   })
+  //   axios.get(this.API.API_PAGEBASEDATA +this.$store.state.CarTypeId).then(res => {
+  //     this.basedata = res.data
+  //   }).catch(err => {
+  //     alert(err.data)
+  //   })
+  // },
+  created() {
+    if (window.localStorage.getItem("list") ) {
+      this.$store.replaceState(Object.assign({},
+          this.$store.state,JSON.parse(window.localStorage.getItem("list"))))
+    }
+  },
+  beforeCreate() {
+    axios.get(this.API.API_GET_DETAILCAR + sessionStorage.CarTypeIds).then(res => {
+      this.$store.commit("changepagemessageData",res.data)
+    })
+  },
   mounted() {
-    axios.get(this.API.API_PAGEBASEDATA + this.$store.state.CarTypeId).then(res => {
+    axios.get(this.API.API_PAGEBASEDATA + sessionStorage.CarTypeIds).then(res => {
       this.basedata = res.data
+      this.$store.commit("changebasepagemessageData",res.data)
     }).catch(err => {
       alert(err.data)
     })
@@ -354,6 +481,13 @@ export default {
   style: process.env.STYLE,
   data() {
     return {
+      carlist:"",
+      innerDrawer: false,
+      c1:[],
+      c2:[],
+      fullscreenLoading: false,
+      drawer2:false,
+      direction2:"ttb",
       basedata:"",
       cartechincal:"",
       activeNames: ['1'],
@@ -383,27 +517,103 @@ export default {
 
   },
   methods: {
+    deleteCom(sign){
+      if (sign === 1){
+        this.c1 = []
+      }
+      else {
+        this.c2 = []
+      }
+    },
+    comCar(data){
+      if (this.c1.length === 0){
+        this.c1 = data
+      }
+      else {
+        this.c2 = data
+      }
+      this.handleClose(done)
+    },
+    chooseCar(sign){
+      if (sign === 1){
+        axios.post(this.API.API_CARTACHINCALDATA).then(res => {
+          this.carlist = res.data
+          this.innerDrawer = true;
+        })
+      }
+      if (sign === 2){
+        if (this.c1.length === 0){
+          this.$store.commit("changewarncount")
+          if (this.$store.state.warncount <= 4){
+            this.$message('请先添加第一辆车');
+          }else {
+            this.$message({
+              message:"说了让你先加第一辆车,怎么和倔的和头驴一样?",
+              type:"warning"
+            });
+          }
+
+        }
+        else {
+          axios.post(this.API.API_CARTACHINCALDATA).then(res => {
+            this.carlist = res.data
+            this.innerDrawer = true;
+          })
+        }
+      }
+    },
+    pushCompare(pk){
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+      axios.get(this.API.API_CARTACHINCALDATA + pk + "/").then(res => {
+        this.$store.commit("changec1",res.data)
+        this.c1 = res.data
+        loading.close();
+        this.drawer2 = true
+      }).catch(err => {
+        const h = this.$createElement;
+        loading.close();
+        this.$message({
+          message: h('p', null, [
+            h('span', null, '服务内部错误 '),
+            h('i', { style: 'color: red' }, 'ERROR:CODE 500')
+          ])
+        });
+      })
+
+    },
     handleChange(val) {
       console.log(val);
     },
     getData(pk){
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
       console.log(pk);
-
       axios.get(this.API.API_CARTACHINCALDATA + pk + "/").then(res => {
         this.cartechincal = res.data
         console.log(this.cartechincal)
+          loading.close();
+          this.drawer = true;
       }).catch(err => {
         alert(err.data)
       })
-      this.drawer = true;
 
     },
+    changedrawer2(pk){
+      sessionStorage.pk = pk;
+      location.href = "/purchase"
+      // this.$router.push("/purchase")
+    },
     handleClose(done) {
-      this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
+      done()
     },
     GoIndex(){
       // this.$router.replace('/index')

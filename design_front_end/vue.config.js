@@ -36,6 +36,7 @@ module.exports = {
         ]
     },
     devServer: {
+        // public: '192.168.31.132:8080/index',
         public: '192.168.31.132:8080/index',
         port: '8080',
         index: 'homework.html',

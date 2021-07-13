@@ -43,3 +43,126 @@
     line-height: 20px;
     margin-top: 10px;
 }
+.compare{
+    position: relative;
+    overflow: scroll;
+    margin-left: 10px;
+    flex: 1;
+    height: 720px;
+    /*background-color: salmon;*/
+    font-family: "Microsoft YaHei UI Light";
+}
+.compare::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 0;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 0;
+    scrollbar-arrow-color:red;
+}
+.compare::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+    scrollbar-arrow-color:red;
+}
+.compare::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+.header{
+    position: relative;
+    width: 400px;
+    height: 255px;
+}
+.controlCom{
+    margin-top: 40px;
+    margin-left: 20px;
+}
+.normal{
+    height: 55px;
+    line-height: 55px;
+    border-top: 1px solid rgb(227, 228, 228);
+    border-bottom: 1px solid rgb(227, 228, 228);
+}
+.tips{
+    line-height: 28px;
+    font-size: 12px;
+}
+img{
+    position: relative;
+    left: -20px;
+    height: 100%;
+    width: 100%;
+}
+.PDK{
+    display: block;
+    position: relative;
+    left: 40%;
+    transform: translateX(-50%);
+    height: 30px;
+    border-bottom: 1px solid firebrick;
+    text-align: center;
+}
+.price{
+    display: block;
+    position: relative;
+    left: 40%;
+    transform: translateX(-50%);
+    height: 30px;
+    top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+.choosecar{
+    margin-top: 130px;
+    margin-left: 100px;
+}
+#innerbox{
+    height: 700px;
+    overflow: scroll;
+    margin-top: -50px;
+    margin-left: 10px;
+}
+#innerbox>ul>li:hover{
+    cursor: pointer;
+}
+#innerbox>ul>li{
+    line-height: 40px;
+    height: 40px;
+    border-top: 1px solid rgb(227, 228, 228);
+    border-bottom: 1px solid rgb(227, 228, 228);
+}
+#innerbox::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 0;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 0;
+    scrollbar-arrow-color:red;
+}
+#innerbox::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+    scrollbar-arrow-color:red;
+}
+#innerbox::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+#de1{
+    z-index: 9999;
+    position: absolute;
+    left: 91%;
+    top: -10px;
+}
+#de2{
+    z-index: 9999;
+    position: absolute;
+    left: 91%;
+    top: -10px;
+}
+#de2{
+    cursor:pointer;
+}
+#de1{
+    cursor: pointer; 
+ }

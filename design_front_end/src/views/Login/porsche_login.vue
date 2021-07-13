@@ -137,8 +137,8 @@ export default {
       })
       .catch(err=>{
         this.$notify.error({
-          title: '错误',
-          message: '注册失败，请检查您的输入'
+          title: '注册失败',
+          message: '请检查您的输入或网络'
         });
       })
     },

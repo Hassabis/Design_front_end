@@ -101,6 +101,7 @@ export default {
     },
     Go_detail(pk){
       this.$store.commit("changCarTypeId",pk)
+      sessionStorage.CarTypeIds = pk
       axios.get(this.API.API_GET_DETAILCAR + this.$store.state.CarTypeId + "/").then(res =>{
         this.$store.commit("changeCarTDate",res.data)
       })
