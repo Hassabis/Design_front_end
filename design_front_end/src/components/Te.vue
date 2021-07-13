@@ -190,7 +190,7 @@
                 <div class="chi" @click="getData(item.id)" type="primary">
                   技术数据
                 </div>
-                <div class="chi"  @click="changedrawer2(item.id)" type="primary" >
+                <div class="chi"  @click="changedrawer2(item.id,token)" type="primary" >
                  购买
                 </div>
                 <div class="chi" @click="pushCompare(item.id)" type="primary">
@@ -476,11 +476,19 @@ export default {
   beforeDestroy() {
     $.fn.fullpage.destroy('all');
   },
+  beforeRouteEnter(to,from,next){
+    next(vm => {
+      sessionStorage.routePrivew = from
+      console.log(from)
+    })
+  },
   name: 'VueFullPage',
   label: process.env.LABEL,
   style: process.env.STYLE,
   data() {
     return {
+      routePrivew:sessionStorage.routePrivew,
+      token:sessionStorage.token,
       carlist:"",
       innerDrawer: false,
       c1:[],
@@ -607,9 +615,23 @@ export default {
       })
 
     },
-    changedrawer2(pk){
-      sessionStorage.pk = pk;
-      location.href = "/purchase"
+    changedrawer2(pk,token){
+      if (sessionStorage.username === undefined){
+        localStorage.rou = this.$route.path
+        localStorage.pk = pk;
+        location.href = "/login"
+      }else {
+        if (sessionStorage.token !== token){
+          alert("小王八羔子,注意您的sql注入行为")
+          location.href = "/index"
+        }
+        else {
+          sessionStorage.pk = pk;
+          location.href = "/purchase"
+        }
+      }
+      sessionStorage.token = response.data.token;
+      sessionStorage.username = response.data.username;
       // this.$router.push("/purchase")
     },
     handleClose(done) {

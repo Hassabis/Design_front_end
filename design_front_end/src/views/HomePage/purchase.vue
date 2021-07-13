@@ -27,7 +27,8 @@ import axios from "axios";
 export default {
   name: "purchase",
   mounted() {
-    axios.get(this.API.API_CARTACHINCALDATA + sessionStorage.pk + "/").then(res => {
+    axios.get(this.API.API_CARTACHINCALDATA + localStorage.pk + "/").then(res => {
+      localStorage.clear()
       this.CarData = res.data
       console.log(this.CarData)
     }).catch(err => {

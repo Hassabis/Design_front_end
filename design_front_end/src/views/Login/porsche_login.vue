@@ -55,10 +55,14 @@ import "./spc/main"
 import "./spc/particles"
 import axios from "axios"
 export default {
+  mounted() {
+    console.log(sessionStorage.rou)
+  },
 
   name: "porsche_login",
   data(){
     return{
+      routePrivew:sessionStorage.routePrivew,
       name_err:'',
       error_name:false,
       username:'',
@@ -94,7 +98,7 @@ export default {
       })
       .then(response=>{
         sessionStorage.clear();
-        localStorage.clear();
+        // localStorage.clear();
         // localStorage.token = response.data.token;
         // localStorage.username = response.data.username;
         // localStorage.user_id = response.data.id;
@@ -104,9 +108,16 @@ export default {
         sessionStorage.birthday = response.data.birthday
         sessionStorage.profession = response.data.profession
         sessionStorage.gender = response.data.gender
-        this.$router.push('/profile').catch(error => {
-          console.log(error)
-        })
+        if (localStorage.rou === "/detail"){
+          this.$router.push('/purchase').catch(error => {
+            console.log(error)
+          })
+        }
+        else {
+          this.$router.push('/profile').catch(error => {
+            console.log(error)
+          })
+        }
       })
       .catch(err=>{
         // alert("账号或密码错误")
