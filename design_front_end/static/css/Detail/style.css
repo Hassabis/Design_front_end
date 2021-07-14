@@ -415,3 +415,22 @@ img{
 .click_04:hover{
     cursor: pointer;
 }
+#GoPage{
+    z-index: 10;
+    position: absolute;
+    top: 10%;
+    left:-50px;
+    /*border: 1px solid wheat;*/
+    width: 200px;
+    line-height: 40px;
+    font-family: "Microsoft YaHei UI Light";
+    height: 40px;
+    /*left: 10%;*/
+    font-size: 26px;
+    /*margin-left: 100px;*/
+    color: white;
+}
+#GoPage:hover{
+    cursor: pointer;
+    color: firebrick;
+}

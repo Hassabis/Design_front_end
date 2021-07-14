@@ -18,5 +18,7 @@ export default {
     //车辆技术数据
     API_CARTACHINCALDATA:serverBase + "/techincalCar/",
     // 页面基本数据
-    API_PAGEBASEDATA:serverBase + "/pagemessage/"
+    API_PAGEBASEDATA:serverBase + "/pagemessage/",
+    // 支付
+    API_PAY:serverBase + "/payment/"
 }

@@ -67,12 +67,20 @@ export default {
   },
   mounted() {
     // axios.get(this.API.API_GET_INDEX_IMAGE).then(res => {
-    axios.get(this.API.API_GET_INDEX_IMAGE).then(res => {
+    axios.get(this.API.API_GET_INDEX_IMAGE,{"timeout":2000}).then(res => {
       this.img_box = res.data
       console.log(res.data)
     }).catch(err => {
-      console.log(err)
+      this.$notify({
+        type:"warning",
+        title:"检测到服务器端的错误",
+        message:"请核实后继续操作",
+        duration:6000,
+        position:"top-left"
+      })
     })
+
+
   },
   components:{
     navleft,

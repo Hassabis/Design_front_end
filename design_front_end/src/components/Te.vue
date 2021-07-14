@@ -2,6 +2,7 @@
   <div>
     <full-page :options="options" id="fullpage" ref="fullpage" v-cloak>
       <div class="section" :style="{backgroundImage:'url(' + bacimg +')'}">
+        <div id="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div class="slide" v-for="item in this.$store.state.CarData" v-cloak>
           <el-drawer
               :visible.sync="drawer"
@@ -525,6 +526,9 @@ export default {
 
   },
   methods: {
+    goBack(){
+      location.href = "/index"
+    },
     deleteCom(sign){
       if (sign === 1){
         this.c1 = []
@@ -626,6 +630,7 @@ export default {
           location.href = "/index"
         }
         else {
+          localStorage.pk = pk;
           sessionStorage.pk = pk;
           location.href = "/purchase"
         }
