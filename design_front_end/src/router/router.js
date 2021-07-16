@@ -14,7 +14,9 @@ const Te =()=> import("../components/Te")
 const user =()=> import("../views/User/UserCenter")
 const porschelogin =()=> import("../views/Login/porsche_login")
 const Purchase =()=> import("../views/HomePage/purchase")
+const compare =()=> import("../components/compare")
 import Learn from "../components/Learn";
+import subscribe from "../components/subscribe";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -52,6 +54,13 @@ export default new Router({
     {
       path:'/purchase',
       component:Purchase
+    },
+    {
+      path:"/compare",
+      component:compare
+    },{
+    path:"/subscribe",
+      component:subscribe
     }
   ],
   mode:"history"

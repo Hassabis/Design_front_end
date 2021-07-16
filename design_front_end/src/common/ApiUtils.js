@@ -20,5 +20,11 @@ export default {
     // 页面基本数据
     API_PAGEBASEDATA:serverBase + "/pagemessage/",
     // 支付
-    API_PAY:serverBase + "/payment/"
+    API_PAY:serverBase + "/payment/",
+    // 省
+    API_PROVINCE:serverBase + "/province/",
+    // 市
+    API_CITY:serverBase + "/city/",
+    // 省
+    API_DISTRICT:serverBase + "/district/",
 }

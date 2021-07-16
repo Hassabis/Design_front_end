@@ -2,8 +2,8 @@
   <div>
     <full-page :options="options" id="fullpage" ref="fullpage" v-cloak>
       <div class="section" :style="{backgroundImage:'url(' + bacimg +')'}">
-        <div id="GoPage" @click="GoIndex">&lt;&lt;</div>
-        <div class="slide" v-for="item in this.$store.state.CarData" v-cloak>
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
+        <div class="slide" v-for="item in this.$store.state.CarData">
           <el-drawer
               :visible.sync="drawer"
               :direction="direction"
@@ -203,6 +203,7 @@
         </div>
       </div>
       <div v-if="this.$store.state.CarTypeId === 4" class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <h2 id="TaycanHeader" style="font-size: 32px">Taycan设计理念</h2>
         <div id="TayCanHeaderLeft">
           <div>
@@ -219,6 +220,7 @@
         </div>
       </div>
       <div v-else-if="this.$store.state.CarTypeId === 5" class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div id="PanmeraHeaderLeft">
           <div>
             <img src="http://127.0.0.1:8000/static/Panamera/panamera/PanmeraShow.png"/>
@@ -235,6 +237,7 @@
         </div>
       </div>
       <div v-else class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
 <!--        <h3>-->
         <div class="video">
           <video :src="basedata.videoone" loop autoplay muted height="750px"></video>
@@ -252,16 +255,19 @@
       </div>
 
       <div v-if="this.$store.state.CarTypeId === 4" class="section" id="control" :style="{backgroundImage: 'url(' + this.$store.state.BacImg + ')', backgroundSize:'contain',backgroundPosition:'top center',backgroundRepeat:'no-repeat'}">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div id="ControlDetail">
         <DetailShow></DetailShow>
         </div>
       </div>
       <div v-else-if="this.$store.state.CarTypeId === 5" class="section" id="control2" :style="{backgroundImage: 'url(' + this.$store.state.BacImg + ')', backgroundSize:'contain',backgroundPosition:'top center',backgroundRepeat:'no-repeat'}">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div id="ControlDetail2">
           <PanameraDetail></PanameraDetail>
         </div>
       </div>
       <div v-else class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
 <!--        <h3>-->
         <div class="video">
           <video :src="basedata.videotwo" loop autoplay muted height="750px"></video>
@@ -279,6 +285,7 @@
       </div>
 
       <div v-if="this.$store.state.CarTypeId === 4" class="section" id="c4">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <ul id="Carmeaageul">
           <li class="z1">设计<span class="tipscar">查看内饰、外饰和可选车轮<i class="el-icon-arrow-right"></i></span></li>
           <li class="z2">性能<span class="tipscar">了解驱动装置、底盘和制动系统<i class="el-icon-arrow-right"></i></span></li>
@@ -288,6 +295,7 @@
       </div>
       <div v-else-if="this.$store.state.CarTypeId === 5" class="section" id="c5">
         <ul id="Carmeaageul2">
+          <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
           <li class="z1">设计<span class="tipscar">查看内饰、外饰和可选车轮<i class="el-icon-arrow-right"></i></span></li>
           <li class="z2">性能<span class="tipscar">了解驱动装置、底盘和制动系统<i class="el-icon-arrow-right"></i></span></li>
           <li class="z3">充电<span class="tipscar">探索更多关于充电知识，在家充电和尊享充电的信息<i class="el-icon-arrow-right"></i></span></li>
@@ -295,6 +303,7 @@
         </ul>
       </div>
       <div v-else class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
 <!--        <h3>-->
         <div class="video">
           <video :src="basedata.videothree" loop autoplay muted height="750px" width="1400px"></video></div>
@@ -310,6 +319,7 @@
       </div>
 
       <div v-if="this.$store.state.CarTypeId === 4" class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div class="video">
           <img id="male2" src="http://127.0.0.1:8000/static/TayCan/Taybac/TaycanMale.png" alt="" style="height: 750px"></div>
         <div class="main_04">
@@ -323,6 +333,7 @@
         </div>
       </div>
       <div v-else-if="this.$store.state.CarTypeId === 5" class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div class="video">
           <img id="male3" src="http://127.0.0.1:8000/static/Panamera/panamera/PanameraShow2.png" alt="" style="height: 750px"></div>
         <div class="main_04">
@@ -336,6 +347,7 @@
         </div>
       </div>
       <div v-else class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
 <!--        <h3>-->
         <div class="video">
           <video :src="basedata.videofour" loop autoplay muted height="750px" width="1400px"></video></div>
@@ -350,6 +362,7 @@
         </div>
       </div>
       <div class="section">
+        <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div>
         <h1>诗和远方，本该属于我们</h1>
         <div class="accordion">

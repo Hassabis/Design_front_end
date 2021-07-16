@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueFullPage from "vue-fullpage.js/dist/vue-fullpage"
 import router from './router/router'
 import store from './store/store'
 import Element from 'element-ui';
 import $ from "jquery"
 import 'element-ui/lib/theme-chalk/index.css'
 import "fullpage.js/vendors/scrolloverflow"
-import VueFullPage from "vue-fullpage.js/dist/vue-fullpage"
 import ApiUtils from "./common/ApiUtils";
 Vue.use(VueFullPage)
 Vue.prototype.$ = $

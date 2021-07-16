@@ -8,7 +8,7 @@
         <div v-show="show2" class="transition-box">
           <img class="butimg" :src="require('@/../static/img/Car_img/reserver.webp')" alt="">
           <div class="floatBox">
-            <h1>预约试驾</h1>
+            <h1 class="compare2" @click="gosubscribe">预约试驾</h1>
             <h5>&gt;了解更多</h5>
           </div>
         </div>
@@ -18,7 +18,7 @@
         <div v-show="show2" class="transition-box">
           <img class="butimg" :src="require('@/../static/img/Car_img/reserver_02.webp')" alt="">
           <div class="floatBox">
-            <h1>高级定制</h1>
+            <h1 @click="gocompare" class="compare2">车型比较</h1>
             <h5>&gt;不一样的你</h5>
           </div>
         </div>
@@ -28,7 +28,7 @@
         <div v-show="show2" class="transition-box">
           <img class="butimg" :src="require('@/../static/img/Car_img/reserver_03.webp')" alt="">
           <div class="floatBox">
-            <h1>经销商</h1>
+            <h1 class="compare2">经销商</h1>
             <h5>&gt;在你的城市嘛</h5>
           </div>
         </div>
@@ -38,7 +38,7 @@
         <div v-show="show2" class="transition-box">
           <img class="butimg" :src="require('@/../static/img/Car_img/reserver_04.webp')" alt="">
           <div class="floatBox">
-            <h1>关于我们</h1>
+            <h1 class="compare2">关于我们</h1>
             <h5>&gt;了解更多</h5>
           </div>
         </div>
@@ -67,6 +67,12 @@ export default {
     // width:"2400px"
   }),
   methods:{
+    gosubscribe(){
+      this.$router.replace("/subscribe")
+    },
+    gocompare(){
+      this.$router.replace("/compare")
+    },
     ChangeLoading(){
       this.show2 =!this.show2
       console.log("click")
@@ -142,5 +148,9 @@ export default {
   font-size: 32px;
   font-weight: 900;
   /*left: 500px;*/
+}
+.compare2:hover{
+  color: firebrick;
+  cursor: pointer;
 }
 </style>
