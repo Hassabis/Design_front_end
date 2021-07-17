@@ -40,7 +40,7 @@ export default {
   position: relative;
   width: 98vw;
   /*background-color: #333333;*/
-  height: 700px;
+  height: 750px;
   background-color: #181c20;
 }
 #right{

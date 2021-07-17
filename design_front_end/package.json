@@ -22,6 +22,7 @@
     "stylus-loader": "^6.0.0",
     "vue": "^2.6.12",
     "vue-fullpage.js": "^0.1.7",
+    "vue-mini-player": "^0.2.1",
     "vue-particles": "^1.0.9",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"

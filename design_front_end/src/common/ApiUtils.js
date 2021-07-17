@@ -27,4 +27,6 @@ export default {
     API_CITY:serverBase + "/city/",
     // 省
     API_DISTRICT:serverBase + "/district/",
+    // 比赛主页头部信息
+    API_COMPETITIONMESSAGE:serverBase + "/competition/"
 }

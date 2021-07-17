@@ -1,9 +1,9 @@
-#Porche{
+#Porche2{
     width: 123px;
     height: 75px;
     position: relative;
     left: 50%;
-    /*margin-top: -70px;*/
+    margin-top: -70px;
     margin-left: -61.5px;
 }
 #line1{
@@ -23,7 +23,7 @@
     right: 30px;
 }
 #ControlContent{
-    margin-top: 0px;
+    margin-top: 70px;
     display: flex;
 }
 .content{
@@ -34,6 +34,7 @@
     /*border: 1px solid salmon;*/
 }
 img{
+    margin-left: 20px;
     width: 500px;
     height: 300px;
 }

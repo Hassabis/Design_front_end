@@ -17,6 +17,12 @@ const Purchase =()=> import("../views/HomePage/purchase")
 const compare =()=> import("../components/compare")
 import Learn from "../components/Learn";
 import subscribe from "../components/subscribe";
+import motorcycles from "../components/motorcycles";
+import TheSportsCar from "../components/TheSportsCar";
+import GT3Cup911 from "../components/GT3Cup911";
+import GT3R911 from "../components/GT3R911";
+import cayman from "../components/cayman";
+import GT2RSClubsport911 from "../components/GT2RSClubsport911";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -58,9 +64,41 @@ export default new Router({
     {
       path:"/compare",
       component:compare
-    },{
-    path:"/subscribe",
+    },
+    {
+      path:"/subscribe",
+      name:"subscribe",
       component:subscribe
+    },
+    {
+      path:"/motorcycles",
+      name:"motorcycles",
+      component:motorcycles
+    },
+    {
+      path:"/TheSportsCar",
+      name:"TheSportsCar",
+      component:TheSportsCar
+    },
+    {
+      path:"/911GT3Cup",
+      name:"911GT3Cup",
+      component:GT3Cup911
+    },
+    {
+      path:"/GT3R911",
+      name:"GT3R911",
+      component:GT3R911
+    },
+    {
+      path:"/GT2RSClubsport911",
+      name:"GT2RSClubsport911",
+      component:GT2RSClubsport911
+    },
+    {
+      path:"/cayman",
+      name:"cayman",
+      component:cayman
     }
   ],
   mode:"history"

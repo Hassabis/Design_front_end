@@ -8,6 +8,9 @@ import $ from "jquery"
 import 'element-ui/lib/theme-chalk/index.css'
 import "fullpage.js/vendors/scrolloverflow"
 import ApiUtils from "./common/ApiUtils";
+import vueMiniPlayer from 'vue-mini-player'
+import 'vue-mini-player/lib/vue-mini-player.css'
+Vue.use(vueMiniPlayer)
 Vue.use(VueFullPage)
 Vue.prototype.$ = $
 Vue.use(Element, { size: 'small', zIndex: 3000 });

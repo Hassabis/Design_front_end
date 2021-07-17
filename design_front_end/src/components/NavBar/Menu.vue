@@ -13,7 +13,7 @@
       <el-menu-item index="2-4-3">选项3</el-menu-item>
     </el-submenu>
   </el-submenu>
-    <el-menu-item index="3">赛车&活动</el-menu-item>
+    <el-menu-item index="3" @click="gomotorcycles">赛车&活动</el-menu-item>
     <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">个性化服务</a></el-menu-item>
   </el-menu>
 </template>
@@ -29,6 +29,10 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
+    },
+    gomotorcycles(){
+      // this.$router.replace("/motorcycles")
+      location.href = "/motorcycles"
     }
   }
 }
