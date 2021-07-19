@@ -14,7 +14,8 @@
     <div class="content">经销商</div>
     <div class="content">注册兴趣</div>
     <h3 class="bot">About Wechat</h3>
-    <span class="content bot">官方微信</span>
+    <span class="content bot">官方微信</span><br>
+    <span id="buy" class="content bot" @click="buy" v-if="isShow">就买它</span>
   </article>
   <footer style="font-family: source-han-sansa,soho-gothic-pro,Arial,sans-serif">
     <img id="logo" :src="require('@/../static/img/Car_img/porsche-svg.svg')" alt="">
@@ -30,8 +31,36 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "fotter_v"
+  name: "fotter_v",
+  props:{
+    isShow:{
+      type:Boolean,
+      default:true,
+      require:false
+    }
+  },
+  data(){
+    return{
+      formdata:{
+        name:localStorage.name,
+        price:localStorage.price
+      }
+    }
+  },
+  methods:{
+
+    buy(){
+      axios.post(this.API.API_PAY,this.formdata).then(res => {
+        localStorage.clear()
+        location.href = res.data.alipay_url
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  }
 }
 </script>
 
@@ -116,5 +145,18 @@ h4:hover{
 #logo{
   width: 258px;
   height: 156px;
+}
+#buy{
+  display: block;
+  margin-top: 20px;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid white;
+}
+#buy:hover{
+  color: firebrick;
+  border: 1px solid firebrick;
 }
 </style>

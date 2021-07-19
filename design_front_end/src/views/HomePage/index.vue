@@ -4,9 +4,6 @@
       <el-header height="120px">
         <div id="search">
           <Search></Search>
-          <div id="cli">
-            <el-button type="primary" icon="el-icon-search">搜索</el-button>
-          </div>
         </div>
         <div id="meun">
           <Menu></Menu>
@@ -168,11 +165,6 @@ export default {
   left: 115px;
   top: 90px;
   width: 400px;
-}
-#cli{
-  position: absolute;
-  left: 195px;
-  top: 0;
 }
 #our{
   margin: 10px auto;

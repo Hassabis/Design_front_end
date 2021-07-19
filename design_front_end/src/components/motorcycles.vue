@@ -88,7 +88,7 @@
         </li>
         <li>
           <img src="http://127.0.0.1:8000/static/competition/911GT3CUP.png" alt="">
-          <div class="contentbox2">
+          <div class="contentbox2" @click="stopgo">
             <i class="el-icon-arrow-right"></i>
             <span class="carname">911GT3 Cup</span>
           </div>
@@ -168,7 +168,7 @@
         </li>
       </ul>
     </div>
-    <fotter_v></fotter_v>
+    <fotter_v :is-show="false"></fotter_v>
   </div>
 </template>
 
@@ -205,19 +205,42 @@ export default {
     },
     RSR911(){
       location.href = "/TheSportsCar"
+      // this.$router.replace("/TheSportsCar")
+      localStorage.name = "911 RSR"
+      localStorage.price = "4,986,000"
     },
     GT3Cup911(){
       location.href = "/911GT3Cup"
+      // this.$router.replace("/911GT3Cup")
+      localStorage.name = "911GT3 Cup"
+      localStorage.price = "7,888,000"
     },
     GT3R911(){
       location.href = "/GT3R911"
+      // this.$router.replace("/GT3R911")
+      localStorage.name = "911GT3 R"
+      localStorage.price = "6,100,000"
     },
     GT2RSClubsport911(){
       location.href = "/GT2RSClubsport911"
+      // this.$router.replace("/GT2RSClubsport911")
+      localStorage.name = "911 GT2 RS Clubsport"
+      localStorage.price = "6,386,000"
     },
     CaymanGT4Clubsport718(){
+      // this.$router.replace("/cayman")
       location.href = "/cayman"
+      localStorage.name = "718 Cayman GT4 Clubsport"
+      localStorage.price = "3,536,000"
+    },
+    stopgo(){
+      this.$message({
+        message:"暂时不支持对该车进行浏览，给您造成的不便我们深表歉意",
+        type:"info",
+        duration:6500
+      })
     }
+
   }
 }
 </script>

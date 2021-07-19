@@ -23,6 +23,7 @@ import GT3Cup911 from "../components/GT3Cup911";
 import GT3R911 from "../components/GT3R911";
 import cayman from "../components/cayman";
 import GT2RSClubsport911 from "../components/GT2RSClubsport911";
+import search from "../components/search";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -99,6 +100,11 @@ export default new Router({
       path:"/cayman",
       name:"cayman",
       component:cayman
+    },
+    {
+      path:"/search",
+      name:"search",
+      component:search
     }
   ],
   mode:"history"

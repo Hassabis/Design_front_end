@@ -1,30 +1,59 @@
 <template>
-  <el-autocomplete
-      v-model="state"
-      :fetch-suggestions="querySearchAsync"
-      placeholder="请输入内容"
-      @select="handleSelect"
-  >
-  </el-autocomplete>
+  <div id="root">
+    <el-autocomplete
+        v-model="state"
+        :fetch-suggestions="querySearchAsync"
+        placeholder="请输入内容"
+        @select="handleSelect"
+    >
+    </el-autocomplete>
+    <div id="cli">
+<!--      <router-link :to="this.path">-->
+        <el-button type="primary" icon="el-icon-search" @click="searchGo">搜索</el-button>
+<!--      </router-link>-->
+    </div>
+  </div>
 
 
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       restaurants: [],
       state: '',
-      timeout:  null
+      timeout:  null,
     };
   },
   methods: {
+    searchGo(){
+      if (this.state === ''){
+        this.$message({
+          type:"warning",
+          message:"请输入查询关键字：如 911"
+        })
+        this.path = "/index"
+      }
+      else {
+        axios.get(this.API.API_SEARCH + this.state).then(res => {
+          this.$store.commit("changesearchResult",res.data)
+          this.$store.commit("changesearchname",this.state)
+          // console.log(res.data)
+          // for (let i = 0; i < res.data.length; i++) {
+          //   console.log(res.data[i].object.carimage)
+          // }
+        })
+        // this.path = 'search/' + this.state
+        this.$router.push("/search")
+      }
+    },
     loadAll() {
       return [
-        { "value": "保时捷911", "address": "北京市朝阳区" },
-        { "value": "卡宴2021", "address": "上海市长宁区淞虹路661号" },
-        { "value": "保时捷性能解析", "address": "关于保时捷" },
+        { "value": "911", "address": "北京市朝阳区" },
+        { "value": "Taycan", "address": "上海市长宁区淞虹路661号" },
         { "value": "Macan", "address": "北京市朝阳区" },
         { "value": "Cayenne", "address": "Cayenne的过人之处" },
         { "value": "718", "address": "设计哲学" },
@@ -54,3 +83,10 @@ export default {
   }
 };
 </script>
+<style scoped>
+#cli{
+  position: absolute;
+  left: 195px;
+  top: 0;
+}
+</style>

@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import th from "element-ui/src/locale/lang/th";
-
+import createVuexAlong from 'vuex-along'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    searchname:"",
+    searchResult:[],
     basedata:"",
     pagemessageData:"",
     warncount:1,
@@ -56,6 +58,13 @@ export default new Vuex.Store({
     changebasepagemessageData(state,context){
       state.basedata = context
       window.localStorage.setItem("list2",JSON.stringify(state.CarData))
+    },
+    changesearchResult(state,context){
+      state.searchResult = context
+      window.localStorage.setItem("list3",JSON.stringify(state.searchResult))
+    },
+    changesearchname(state,context){
+      state.searchname = context
     }
   },
   actions: {
@@ -65,5 +74,6 @@ export default new Vuex.Store({
         resolve(payload)
       })
     }
-  }
+  },
+  plugins: [createVuexAlong()]
 })

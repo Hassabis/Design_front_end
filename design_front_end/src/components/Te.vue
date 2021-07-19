@@ -111,10 +111,10 @@
                 <ul class="controlCom">
                   <li class="header" style="font-weight: 700;font-size: 24px">
                     <div id="de1" @click="deleteCom(1)">
-                      <i class="el-icon-close" style="font-size: 32px"></i>
+                      <i class="el-icon-close t2" style="font-size: 32px"></i>
                     </div>
                     <div>
-                      <img :src="c1.carimage" alt="">
+                      <img :src="c1.carimage" alt="" class="t1">
                     </div>
                   </li>
                   <li class="header">
@@ -142,10 +142,10 @@
                 <ul class="controlCom">
                   <li class="header" style="font-weight: 700;font-size: 24px">
                     <div id="de2" @click="deleteCom(2)">
-                      <i class="el-icon-close" style="font-size: 32px"></i>
+                      <i class="el-icon-close t2" style="font-size: 32px"></i>
                     </div>
                     <div>
-                      <img :src="c2.carimage" alt="">
+                      <img :src="c2.carimage" alt="" class="t1">
                     </div>
                   </li>
                   <li class="header">
@@ -348,7 +348,7 @@
       <div v-if="this.$store.state.CarTypeId === 4" class="section">
         <div class="GoPage" @click="GoIndex">&lt;&lt;</div>
         <div class="video">
-          <img id="male2" src="http://127.0.0.1:8000/static/TayCan/Taybac/TaycanMale.png" alt="" style="height: 750px"></div>
+          <img id="male2" src="http://127.0.0.1:8000/static/TayCan/Taybac/TaycanMale.png" alt="" style="height: 750px;width: 100%;"></div>
         <div class="main_04">
           <h2 class="title_04">
             Taycan
@@ -476,25 +476,6 @@ import DetailShow from "./DetailShow";
 import PanameraDetail from "./PanameraDetail";
 import axios from "axios";
 export default {
-  // beforeCreate() {
-  //   if (sessionStorage.getItem("store")){
-  //     this.$store.replaceState(
-  //         Object.assign(
-  //             {},
-  //             this.$store.state,
-  //             JSON.parse(sessionStorage.getItem("store"))
-  //         )
-  //     )
-  //   }
-  //   window.addEventListener("beforeunload",()=>{
-  //     sessionStorage.setItem("store",JSON.parse(this.$store.state))
-  //   })
-  //   axios.get(this.API.API_PAGEBASEDATA +this.$store.state.CarTypeId).then(res => {
-  //     this.basedata = res.data
-  //   }).catch(err => {
-  //     alert(err.data)
-  //   })
-  // },
   created() {
     if (window.localStorage.getItem("list") ) {
       this.$store.replaceState(Object.assign({},
@@ -867,5 +848,12 @@ video{
 #c5{
   background: url("http://127.0.0.1:8000/static/Panamera/panamera/PanameraMain.png") no-repeat top center;
   background-size: cover;
+}
+.t1{
+  width: 400px;
+  height: 250px;
+}
+.t2{
+  margin-left: 15px;
 }
 </style>

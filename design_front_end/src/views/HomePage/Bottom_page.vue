@@ -68,7 +68,8 @@ export default {
   }),
   methods:{
     gosubscribe(){
-      this.$router.replace("/subscribe")
+      location.href = "/subscribe"
+      // this.$router.replace("/subscribe")
     },
     gocompare(){
       this.$router.replace("/compare")

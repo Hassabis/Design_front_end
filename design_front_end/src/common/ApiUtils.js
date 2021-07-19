@@ -28,5 +28,7 @@ export default {
     // 省
     API_DISTRICT:serverBase + "/district/",
     // 比赛主页头部信息
-    API_COMPETITIONMESSAGE:serverBase + "/competition/"
+    API_COMPETITIONMESSAGE:serverBase + "/competition/",
+    // 搜索接口
+    API_SEARCH:serverBase + "/es/search/?text="
 }
